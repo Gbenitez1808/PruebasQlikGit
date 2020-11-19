@@ -1,0 +1,114 @@
+﻿Name;RawValue;Comment
+vSeleccionGrafico;1;
+vSeleccionTabla;3;
+vAppName;\PREVENCION;
+vRoot;R:;
+vAPP;R:\1_APPS\PREVENCION;
+vSTG;R:\2_STG\PREVENCION;
+vSTG_QVD;R:\2_STG\PREVENCION\QVD;
+vDATA;R:\3_DATA;
+vDATA_ARTPROD;R:\3_DATA\ART_PROD;
+vDATA_ARTPROD_QVD;R:\3_DATA\ART_PROD\QVD;
+vDATA_JIRAP;R:\3_DATA\JIRAP;
+vDATA_JIRAP_QVD;R:\3_DATA\JIRAP\QVD;
+vDATA_GLM_ERP;R:\3_DATA\GLM_ERP;
+vDATA_GLM_ERP_QVD;R:\3_DATA\GLM_ERP\QVD;
+vDATA_GLM_SEG;R:\3_DATA\GLM_SEG;
+vDATA_GLM_SEG_QVD;R:\3_DATA\GLM_SEG\QVD;
+vDATA_GLM_RRHH;R:\3_DATA\GLM_RRHH;
+vDATA_GLM_RRHH_QVD;R:\3_DATA\GLM_RRHH\QVD;
+vDATA_GLM_COM;R:\3_DATA\GLM_COM;
+vDATA_GLM_COM_QVD;R:\3_DATA\GLM_COM\QVD;
+vDATA_USRFILES;R:\3_DATA\USRFILES;
+vDATA_USRFILES_QVD;R:\3_DATA\USRFILES\QVD;
+vUSRFILES;R:\4_USRFILES\PREVENCION;
+vCALENDARIO;R:\2_STG\CALENDARIO\QVD;
+vOculto;;
+vAñoActualCalendario;"=Max(CALENDARIO_LINK_AñoART)
+//=max({1<CALENDARIO_VIGENCIA_Año=>}CALENDARIO_VIGENCIA_Año)";
+vAñoAnteriorCalendario;"=Max(CALENDARIO_LINK_AñoART)-1
+//=max({1<CALENDARIO_VIGENCIA_Año=>}CALENDARIO_VIGENCIA_Año-1)";
+vUSRFILES_PROD;\\172.19.46.37\qv_prod\4_USRFILES\PREVENCION;
+vCOMERCIAL_STG;R:\2_STG\COMERCIAL\QVD;
+vJUICIOS_STG;R:\2_STG\JUICIOS\QVD;
+vAñoVisita;=max({<CALENDARIO_VISITAS_Año=>}CALENDARIO_VISITAS_Año);
+vPeriodoVisita;=max({<CALENDARIO_VISITAS_CONTINUO=>}CALENDARIO_VISITAS_CONTINUO);
+vPRESTACIONES_STG;R:\2_STG\PRESTACIONES\QVD;
+vGEN_STG;R:\2_STG\GEN\QVD;
+vMesActualSiniestros;=max({<CALENDARIO_SINIESTROS_CONTINUO=>}CALENDARIO_SINIESTROS_CONTINUO);
+vAñoActualSiniestros;"=Max(CALENDARIO_SINIESTROS_Año_Denuncia)
+
+//=max({<CALENDARIO_SINIESTROS_Año_Denuncia=>}CALENDARIO_SINIESTROS_Año_Denuncia)";
+vAñoAnteriorSiniestros;"=max(CALENDARIO_SINIESTROS_Año_Denuncia)-1
+
+//{$<CALENDARIO_SINIESTROS_Año_Denuncia=>}";
+vAñoAnteriorLinkSiniestros;=max(CALENDARIO_LINK_Año)-1;
+vAñoActualLinkSiniestros;=max(CALENDARIO_LINK_Año);
+vCiclicoIFS;=[Cíclico IFS];
+vULEM;201708;
+vMaxPeriodoSiniestros;201709;
+vMesesSelect;"=concat(distinct chr(39) & CALENDARIO_LINK_Mes & chr(39),',')";
+vNoFiltrarCapitas;SINIESTROS_Estado_Acept=,SINIESTROS_Region=, SINIESTROS_Provincia=,SINIESTROS_Tipo_Desc=,SINIESTROS_Canal_Denuncia=, SINIESTROS_Nivel_Gravedad=, SINIESTROS_Zona_Afectada=;
+vNoFiltrarSiniestros;SINIESTROS_Region=, SINIESTROS_Provincia=,SINIESTROS_Tipo_Desc=,SINIESTROS_Canal_Denuncia=, SINIESTROS_Nivel_Gravedad=, SINIESTROS_Zona_Afectada=;
+vEstadoSelect;"=concat({1<SINIESTROS_Estado_Acept-={'Rechazado'}>} 
+distinct chr(39) & SINIESTROS_Estado_Acept & chr(39),',')";Concatenacion de estados seleccionados
+vPeriodoSelect;"=concat(distinct chr(39) & CALENDARIO_LINK_Periodo & chr(39),',')";
+vmostrar;0;mostrar tabla o grafico
+vMaxPeriodoVisitas;"=Date(max({<VISITAS_Visita_Efectiva_Fallida_PV=>}CALENDARIO_LINK_Periodo),'YYYYMM')";
+vMaxAñoFiscalIsla;=MaxString(CALENDARIO_ISLA_AñoFiscal));
+vMostrar;1;Cada vez q hago clic sobre el boton, cambio de hoja con los graficos
+vMesEnero;"=left(Maxstring(CALENDARIO_VISITAS_Periodo), 4)&'01'";
+vMesFebrero;"=left(Maxstring(CALENDARIO_VISITAS_Periodo), 4)&'07'";
+vMesJulio;"=left(Maxstring(CALENDARIO_VISITAS_Periodo), 4)&'07'";
+vMaxPeriodo_IFS;=MaxString(CALENDARIO_LINK_Periodo);Es el periodo maximo de novedades de siniestros y cartera.
+vCantidadSiniestros;"COUNT(DISTINCT{<SINIESTROS_KEY_PERIODO={'$(vMaxPeriodo_IFS)'}>} SINIESTROS_Cod_Siniestro)";
+vTabla463;"=if (Count(DISTINCT{$<_FLAG_LINK_OBJETIVO_VISITA={1}
+                      ,_KEY_SUCURSALES= E({<_FLAG_LINK_OBJETIVO_VISITA={1},
+				   						_FLAG_LINK_VISITA={1},
+				   						RangoCapitasDesc=,RangoAcotado= 
+				   							>})
+				   							
+				   							>} _KEY_SUCURSALES) >=1 
+	   , if(OBJETIVO_VISITAS_Vencimiento> Today()
+            , 1.5
+            , 2))";
+vPrueba;"if (Count(DISTINCT{$<_FLAG_LINK_OBJETIVO_VISITA={1}
+                      ,_KEY_SUCURSALES= E({<_FLAG_LINK_OBJETIVO_VISITA={1},
+				   						_FLAG_LINK_VISITA={1},
+				   						RangoCapitasDesc=,RangoAcotado= 
+				   							>})
+				   							
+				   							>} _KEY_SUCURSALES) >=1 
+	   , if(OBJETIVO_VISITAS_Vencimiento> Today()
+            , 1.5
+            , 2))";
+vRESERVAS_STG;R:\2_STG\RESERVAS\QVD;
+vDATA_SML;R:\3_DATA\SML;
+vDATA_SML_QVD;R:\3_DATA\SML\QVD;
+vAyF_STG;R:\2_STG\AyF\QVD;
+vDATA_SERVICES;R:\3_DATA\SERVICES;
+vUSRFILES_DESA;R:\4_USRFILES\PREVENCION;
+vADHOC_TOT;"'|' & GetFieldSelections(Totalizadores,'|',1000) & '|'";
+vDATA_TECNOVOZ;R:\3_DATA\TECNOVOZ;
+vDATA_TECNOVOZ_QVD;R:\3_DATA\TECNOVOZ\QVD;
+vDATA_OmniCX;R:\3_DATA\OmniCX;
+vDATA_OmniCX_QVD;R:\3_DATA\OmniCX\QVD;
+vDATA_LDAP;R:\3_DATA\LDAP;
+vDATA_LDAP_QVD;R:\3_DATA\LDAP\QVD;
+vUSRFILES_PROD_GENERAL;\\172.19.46.37\qv_prod\4_USRFILES;
+vDATA_VOCALCOM;R:\3_DATA\VOCALCOM;
+vDATA_VOCALCOM_QVD;R:\3_DATA\VOCALCOM\QVD;
+vADHOC_IND_VISITAS;"'|' & GetFieldSelections(Indicadores_Visitas,'|',1000) & '|'";
+vADHOC_IND_ESTAB;"'|' & GetFieldSelections(Indicadores_Estab,'|',1000) & '|'";
+vADHOC_DIM_VISITAS_VISITAS;"'|' & GetFieldSelections(Atributos_Visitas_Visitas,'|',1000) & '|'";
+vADHOC_DIM_VISITAS_POLI;"'|' & GetFieldSelections(Atributos_Visitas_Polizas,'|',1000) & '|'";
+vADHOC_DIM_ESTAB_VISITAS;"'|' & GetFieldSelections(Atributos_Estab_Visitas,'|',1000) & '|'";
+vADHOC_DIM_ESTAB_ESTAB;"'|' & GetFieldSelections(Atributos_Estab_Estab,'|',1000) & '|'";
+vADHOC_DIM_ESTAB_POLI;"'|' & GetFieldSelections(Atributos_Estab_Polizas,'|',1000) & '|'";
+vSTG_QS;\2_STG;
+vDATA_SEGUROS;R:\3_DATA\SEGUROS;
+vDATA_SEGUROS_QVD;R:\3_DATA\SEGUROS\QVD;
+vSEGUROS_STG;R:\2_STG\SEGUROS\QVD;
+vPREVENCION_STG;R:\2_STG\PREVENCION\QVD;
+vVarPath;PRUEBA asdasdasd-prj\PRUEBA asdasdasd_Variables;
+vActualizarVariables;1;

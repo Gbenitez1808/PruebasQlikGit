@@ -1,0 +1,1162 @@
+﻿///$tab Main
+SET ThousandSep='.';
+SET DecimalSep=',';
+SET MoneyThousandSep='.';
+SET MoneyDecimalSep=',';
+SET MoneyFormat='$ #.##0,00;-$ #.##0,00';
+SET TimeFormat='hh:mm:ss';
+SET DateFormat='D/M/YYYY';
+SET TimestampFormat='D/M/YYYY hh:mm:ss[.fff]';
+SET MonthNames='ene.;feb.;mar.;abr.;may.;jun.;jul.;ago.;sep.;oct.;nov.;dic.';
+SET DayNames='lun.;mar.;mié.;jue.;vie.;sáb.;dom.';
+
+
+
+
+///$tab INCLUDE
+//Nombre de la aplicación para la configuración de los path
+LET vAppName = '\PREVENCION';
+$(Include=..\..\5_cfg\path.txt);
+$(Include=..\..\5_cfg\Glosario.txt);
+$(Include=..\..\5_cfg\Template.txt);
+///$tab CONTROL DE CAMBIOS
+CONTROL_DE_CAMBIOS:
+NoConcatenate
+LOAD * INLINE [
+    Fecha, Usuario, Jira, Observacion
+	3-10-17, faboy, sin Jira, Creación de alternativas Rango Cápitas en hoja "Rango Cápitas Alternativa"
+	4-10-17, faboy, BT-591, Creación de glosario
+	5-10-17, faboy, sin Jira, Incorporación de pestaña Include con Glosario y Template
+	6-10-17, faboy, BT-529, Cambios solicitados por Diego en Hoja Informe Indicadores Técnicos
+	6-10-17, faboy, sin Jira, Modificación de gráfico Visitas Realizadas y Visitas Programadas 
+	9-10-17, faboy, sin Jira, Agregado de aclaración "Considera última emisión" en los textos de ayuda de los indicadores de visitas, cuando el período es mayor a ULEM
+	9-10-17, faboy, sin Jira, Cambio de colores en la hoja Cartera Administrada
+	10-10-17, faboy, sin Jira, Modificaciones de diseño en Cartera Administrada, R.463 y Detalle
+	10-10-17, faboy, sin Jira, Agregado de % como texto emergente en el gráfico de Visitas Realizadas
+	11-10-17, faboy, BT-476, Modificación de fórmula de visitas programadas realizadas y pendientes, en indicadores y gráfico de programación
+	12-10-17, faboy, sin Jira, Movimiento de ícono de ayuda en gráficos de Visitas y cambio de lógica para que solo aparezcan con Rango Cápitas
+	12-10-17, faboy, BT-615, Incorporación del campo VISITAS_Geolocalizacion_SN al modelo y al cíclico de visitas
+	20-10-17, faboy, sin Jira, Se rompe la relación entre Sucursales y Movcartera. Las visitas se incorporan a la link
+	3-11-17,  faboy, sin Jira, Se agregan FLAGS de prevencionistas 
+	13-11-17, faboy, sin Jira, Se agrega "IsNull(SUCURSALES_Fecha_Alta)" en el where del punto 2 de la Link
+	13-11-17, faboy, sin Jira, Se modifica la cláusula Where del punto 2 de la link "SUCURSALES_Fecha_Alta < AddMonths(MonthStart(Today()),1)"
+	13-11-17, faboy, sin Jira, Se agrega Date#(OBJETIVO_VISITAS_Año,'YYYY') en la parte de Objetivo Visitas de la Link
+	13-11-17, faboy, sin Jira, Creación de grupo CíclicoObras
+	14-11-17, faboy, sin Jira, Vuelvo a cambiar la cláusula Where del punto 2 de la link porque las obras van a llevar un tratamiento aparte. Queda: 
+	14-11-17, faboy, sin Jira, Comento la parte de Inicios de Obra ya que ahora está incluida en el STG de Sucursales
+	15-11-17, faboy, sin Jira, Modificación de IF de obras en la link. Utilización de LOAD PRECEDENTE
+	16-11-17, faboy, sin Jira, Adecuación de la fórmula de arriba. Hay dos flags de baja (uno de obra y otro de establecimiento) que alimentan un único flag de sucursales
+	16-11-17, faboy, sin Jira, Queda comentada la parte de Programas Normativos porque ahora lo levanta directamente en Pólizas y Sucursales. Si está todo ok, borrar esa parte
+	21-11-17, faboy, BT-735, Modificación del gráfico de evolución mensual de obras. Se incorpora la expresión del obras totales para el año anterior (se cambia la condición) y se modifica la condición para obras comunes
+	24-11-17, faboy, sin Jira, Modificación del formato Año con Date# en _KEY_SUCURSAL_OBJETIVO
+	24-11-17, faboy, sin Jira, Modificación del _FLAG_LINK_VISITA por _FLAG_LINK_OBJETIVO_VISITA en el punto 6 de la link
+	28-11-17, faboy, sin Jira, Modificación de las 3 expresiones originales de la tabla de R.463 y se agrega la expresión E/F/PV/B/PP para reemplazar a VISITAS_Visita_Efectiva_Fallida_PV
+	28-11-17, faboy, sin Jira, Saco el filtro de E/F/PV hasta que esté solucionado ese tema en la link
+	1-12-17, faboy, sin Jira, Modificación de expresiones de la tabla de 463
+	1-12-17, faboy, sin Jira, Agregado de puntos 7 y 8 a la link para resolver el inconveniente con E/F/PV/B/PP
+	4-12-17, faboy, sin Jira, Cambio en _KEY_LINK_VISITA en la link. Se concatena también el ID Visita
+	15-12-17, faboy, sin Jira, Comenté la parte "and VISITAS_Fecha_Vto <= date(MonthEnd( Today())))" en el Where de Visitas
+	18-12-17, faboy, sin Jira, Limpieza de cosas comentadas en el script
+	2-1-18, faboy, BT-780, Se agrega un Where en el Calendario Link para que solo traiga hasta el período actual
+	2-1-18, faboy, sin Jira, Se cambia Max por MaxString en lo que respecta al CALENDARIO_LINK_Periodo (tanto en la hoja de Indicadores técnicos como en la hoja de informe)
+	4-1-18, faboy, sin Jira, Se agrega el campo MOVCARTERA_Fh_Baja_Periodo en MOVCARTERA y en LINK_CVSO para el posterior cálculo de la baja de Establecimientos y Obras
+	4-1-18, faboy, sin Jira, Se cambia Max por MaxString en lo que respecta al CALENDARIO_LINK_Periodo (en los encabezados de Cartera y Visitas)
+	16-1-18, faboy, sin Jira, Se comentan 4 campos de SUCURSALES (IO_FEFIN, IO_FESUSPENSION, etc)
+	24-1-18, faboy, sin Jira, Se agregan 4 campos en SUCURSALES acerca del CIIU, se comenta la tabla FRECUENCIA CIIU y en Gestión de Visitas y R.463 se modifica el campo de CF_FRECUENCIA por el mismo de la tabla OBJETIVO VISITAS
+	24-1-18, faboy, sin Jira, Se agregan 4 campos en POLIZAS acerca del CIIU 
+	30-1-18, faboy, sin Jira, Se agregan el campo SUCURSALES_CIIU_3_Digitos a SUCURSALES y el campo POLIZA_CIIU_3_Digitos a POLIZAS
+	27-8-18, faboy, BT-1390, El STG MOVCARTERA pasa a ser 05 y el de OBJETIVO VISITAS pasa a ser 07
+	07-09-18, lbravo, BT-248, Se incorpora el ADHOC al tablero. 
+	10-12-18, Libero, BT-248, Se incorporan campos al AdHOC por solicitud de Mariano De Napoli. 
+	17-5-19, gbenitez, BT-2418, Se levanto el campo vendedor unificado "_KEY_VENDEDOR_UNIFICADO", ademas se agregaron campos al AD HOC y se hicieron modificaciones al diseño del AD HOC.
+	6-6-19, amilkovska, BT-2543,Desde PRD se tomo la hoja de AdHoc y se renombro como ADHoc Visitas
+	14-6-19, amilkovska, BT-2545, La hoja de ADhoc ahora se llama ADHoc Establecimiento, renombre ID_ESTABLECIMIENTO por CONTRATO-SUCURSAL
+	19-6-19, amilkovska, BT-2540, Incorpore Expresiones nuevas para el ADHoc de Establecimiento
+	21-6-19, amilkovska, BT-2540, Incorpore campos al ADHoc de Establecimiento
+	27-6-19, amilkovska, BT-2540, Desde la hoja Solicitud cartera agregue al ADhoc los indicadore de Contrato con Exposicion y Visitables
+	04-07-19, faboy	,BT-2612, Se cambia la ruta de Polizas a STG 02 (sale de PRV ahora)
+	17-07-19, faboy, BT-2657, Se agrega el campo SUCURSALES_Localidad
+	12-08-19, faboy, BT-2735, Se agrega al ad hoc el campo Fh. Baja Póliza
+	12-08-19, faboy, BT-2762, Se agrega el campo SINIESTRO_Establecimiento_No_Declarado y se incorpora al Cíclico Siniestros
+	13-08-19, faboy, BT-2458, Se agrega la info de deuda y prima de la última emisión
+	
+];
+///$tab Variables
+LET vAppName = LEFT(DOCUMENTNAME(), (INDEX(DOCUMENTNAME(),'.',1)-1) );  // NOMBRE_DOCUMENTO
+LET vVarPath = vAppName&'-prj\'&vAppName&'_Variables';
+LET vActualizarVariables = 0;  //Se quiere Actualizar (o crear) el QVD de variables? 1 para Si
+
+IF($(vActualizarVariables)=1) 
+//Levanto las variables que estan en la App
+	Variables:
+	NoConcatenate
+	LOAD 
+	 Name,
+	 RawValue,
+	 Comment
+	FROM [$(vAppName).qvw] 
+	(XmlSimple, Table is [DocumentSummary/VariableDescription])
+	Where IsConfig = 'false' and IsReserved = 'false' // Exclude system vars
+	// Any addtional filtering here
+	;
+
+ELSE
+	//Levanto las variables que estan guardadas
+	Variables:
+	NoConcatenate
+	LOAD Name, 
+	     RawValue, 
+	     Comment
+	FROM
+	[$(vVarPath).QVD]
+	(qvd);
+
+//	//Agrego las variables que estan en la app y no estan guardadas 
+//	Concatenate(Variables_aux)
+//	LOAD * RESIDENT Variables
+//	WHERE NOT Exists(Name);
+//	
+//	DROP TABLE Variables;
+//	RENAME TABLE Variables_aux to Variables;
+END IF
+
+//Cargo las variables al documento
+FOR idx=0 to NoOfRows('Variables')-1
+ LET vVarname	 	= Peek('Name'		,$(idx),'Variables');
+ LET [$(vVarname)]  = Peek('RawValue'	,$(idx),'Variables');
+NEXT idx
+
+SET idx=;
+SET vVarname=;
+
+//Guardo todas las variables
+STORE Variables INTO [$(vVarPath).csv](txt, delimiter is ';');
+DROP Table Variables;
+
+///$tab MOVIMIENTOS CARTERA
+MOVIMIENTOS_CARTERA:
+LOAD _KEY_POLIZA_MOVCARTERA, 
+	 _KEY_LINK_CARTERA,
+	 _FLAG_Tipo_MovimientoCartera, 
+     _KEY_PERIODO, 
+     MOVCARTERA_Periodo, 
+     _KEY_DNI_POLIZA, 
+     MOVCARTERA_Poliza, 
+     _KEY_FECHA_MOV, 
+     MOVCARTERA_Tipo_Poliza, 
+     MOVCARTERA_Capitas, 
+     _FLAG_Ultima_Emision,
+     MOVCARTERA_Fh_Inicio_Servicios, 
+     MOVCARTERA_Fh_Baja, 
+     MOVCARTERA_Fh_Baja_Periodo, //Agregado 4-1
+     MOVCARTERA_Fh_Carga, 
+     MOVCARTERA_PrimaTecnica, 
+//     MOVCARTERA_Razon_Social, 
+     _FLAG_ALTA, 
+     _FLAG_BAJA, 
+     _FLAG_CARTERA_VIGENTE, 
+     MOVCARTERA_ULEM,
+     _KEY_PREVENCIONISTA_POLIZA,
+     _KEY_RangoCapitas,    
+	 AGRUPACION_INF_CARTERA_CONTRATOS,
+	 AGRUPACION_INF_CARTERA_CAPITAS
+FROM
+[$(vSTG_QVD)\STG_10_MOVCARTERA_MOVCARTERA.QVD]
+(qvd);
+///$tab RANGO CAPITAS
+RANGO_CAPITAS:
+LOAD _KEY_RangoCapitas, 
+     RangoCapitasOrden, 
+     RangoCapitasDesc, 
+     RangoCapitasDesde, 
+     RangoCapitasHasta, 
+     RangoCapitasAgrupado, 
+     RangoAcotado
+FROM
+[$(vGEN_STG)\STG_01_RANGO_CAPITAS_RANGO_CAPITAS.QVD]
+(qvd);
+///$tab SUCURSALES
+SUCURSALES:
+LOAD 
+	 SUCURSALES_NroObra, 
+     SUCURSALES_NPoliza, 
+     SUCURSALES_Consecutivo, 
+     SUCURSALES_Cod, 
+     _KEY_SUCURSALES, 
+     SUCURSALES_Id_Establecimiento, 
+     SUCURSALES_Desc, 
+     SUCURSALES_Domicilio, 
+     SUCURSALES_NroCasa, 
+     SUCURSALES_NroPiso, 
+     SUCURSALES_NroEscalera, 
+     SUCURSALES_NroPuerta, 
+     SUCURSALES_Telefono, 
+     SUCURSALES_Fax, 
+     SUCURSALES_Email, 
+     SUCURSALES_NroAfiliados, 
+     SUCURSALES_CdPostal, 
+     SUCURSALES_CPA, 
+     SUCURSALES_Domicilio_Normal, 
+     SUCURSALES_CIIU, 
+     SUCURSALES_CIIU_Asociado, 
+     SUCURSALES_Usuario, 
+     SUCURSALES_Fecha_Alta, 
+     SUCURSALES_Fecha_Baja, 
+     SUCURSALES_Represen_SN, 
+     SUCURSALES_Represen_Manual, 
+     SUCURSALES_Ejecutivo, 
+     _KEY_PREVENCIONISTA_ESTABLECIMIENTO, 
+     SUCURSALES_Fecha_Carga, 
+     SUCURSALES_RC_SN_RGRL_OKALTA, 
+     SUCURSALES_Fecha_Inicio_Actividad, 
+     SUCURSALES_Clasif, 
+     SUCURSALES_Clasif_Manual, 
+     SUCURSALES_SRT_Aceptado, 
+     SUCURSALES_Usr_Modif, 
+     SUCURSALES_Fecha_Modif, 
+     SUCURSALES_Duracion_Obra, 
+     SUCURSALES_Codigo_SRT, 
+     SUCURSALES_Visitable_SN, 
+     _FLAG_FECHA_BAJA_SUC, 
+     _FLAG_SUCURSALES_NO_VIGENTES_CON_VISITA, 
+     SUCURSALES_Provincia, 
+     SUCURSALES_Region, 
+     SUCURSALES_Tipo_Establecimiento, 
+     _FLAG_CASAS_ESTABLECIMIENTOS_OBRAS, 
+     _KEY_IO, 
+     SUCURSALES_Tipo_Actividad, 
+     SUCURSALES_Tipo_Obra, 
+     SUCURSALES_Prog_Seg_SN,
+     SUCURSALES_Clasificacion_SRT, 
+     IO_PERIODO_FEINICIO, 
+     IO_PERIODO_FEFIN, 
+     IO_PERIODO_IO_FESUSPENSION, 
+     IO_PERIODO_FEREINICIO,
+     IO_VISITABLE_SN,
+     SUCURSALES_CIIU_R2,         //Agregado el 24-1
+     SUCURSALES_CIIU_R3, 		 //Agregado el 24-1
+     SUCURSALES_CIIU_Gran_CIIU,  //Agregado el 24-1	
+     SUCURSALES_CIIU_Frecuencia, //Agregado el 24-1 
+     SUCURSALES_CIIU_3_Digitos,	 //Agregado el 30-1
+     SUCURSALES_Siniestros_Aceptados_Cantidad, //Agregado el 3-7-19
+     SUCURSALES_Siniestros_Rechazados_Cantidad, //Agregado el 3-7-19 
+     SUCURSALES_Siniestros_EnAnalisis_Cantidad, //Agregado el 3-7-19
+     SUCURSALES_Siniestros_RectCM_Cantidad, //Agregado el 3-7-19
+     SUCURSALES_Siniestros_RectDic_Cantidad, //Agregado el 3-7-19
+     SUCURSALES_Siniestros_RectPres_Cantidad, //Agregado el 3-7-19
+     SUCURSALES_Siniestros_RevCM_Cantidad, //Agregado el 3-7-19 
+     SUCURSALES_Siniestros_Totales_Cantidad, //Agregado el 3-7-19
+     SUCURSALES_Tuvo_Visita_SN, //Agregado el 3-7-19
+	 SUCURSALES_Tuvo_Visita_Programada_SN, //Agregado el 3-7-19
+     SUCURSALES_Localidad
+	
+//	 SINIESTRO_Estado_Aceptacion as SUCURSALES_Estado_Aceptacion,//Agregado el 18-6
+//	 _FLAG_Sucursal_con_Stro,	 //Agregado el 18-6
+//	 _FLAG_Sucursal_sin_Stro,	 //Agregado el 18-6
+//	 CANT_Stros_Aceptados_x_Sucursal,	 //Agregado el 18-6
+//	 CANT_Stros_Rechazados_x_Sucursal, 	//Agregado el 18-6,
+
+FROM [$(vSTG_QVD)\STG_03_SUCURSALES_SUCURSALES.QVD] (qvd);
+///$tab SINIESTROS
+SINIESTROS:
+LOAD 
+	 _KEY_EXPEDIENTE_SINIESTRO, 
+     _KEY_POLIZA_SINIESTROS, 
+     _KEY_LINK_SINIESTRO,
+     _KEY_CALENDARIO_SINIESTROS,
+	 SINIESTROS_Fecha_Denuncia,
+	 SINIESTROS_Fecha_Ocurrencia,
+	 SINIESTROS_Poliza, 
+     SINIESTROS_KEY_PERIODO, 
+     SINIESTROS_Canal_Denuncia, 
+     SINIESTROS_Estado_Acept, 
+     SINIESTROS_Zona_Afectada, 
+     SINIESTROS_Nivel_Gravedad, 
+     SINIESTROS_Provincia, 
+     SINIESTROS_Region, 
+     SINIESTROS_Tipo_Desc, 
+     _FLAG_STOCK_SINIESTROS,
+     SINIESTROS_Cod_Siniestro,
+     SINIESTROS_ULEM,
+     SINIESTROS_Grupo_Economico,
+     SINIESTROS_Id_Establecimiento,
+     SINIESTRO_Establecimiento_No_Declarado
+
+FROM
+[$(vSTG_QVD)\STG_03_SINIESTROS_SINIESTROS.QVD]
+(qvd);
+///$tab POLIZAS
+POLIZAS:
+LOAD _KEY_POLIZA, 
+	 _KEY_POLIZA_LINK, 
+	 POLIZA_Nro,
+     POLIZA_Grupo_Economico, 
+     POLIZA_Provincia, 
+     POLIZA_Zona_Cualit_Desc, 
+     POLIZA_Tipo_Producto_Nombre,
+	 POLIZA_Clasificacion_SRT,   
+     _FLAG_Es_Contrato,
+     POLIZA_Razon_Social		AS MOVCARTERA_Razon_Social,
+     POLIZA_CIIU_R2, 			//Agregado el 24-1
+     POLIZA_CIIU_R3, 			//Agregado el 24-1
+     POLIZA_Gran_CIIU, 			//Agregado el 24-1
+     POLIZA_CIIU_Frecuencia,	//Agregado el 24-1
+     POLIZA_CIIU_3_Digitos,		//Agregado el 30-1
+     POLIZA_Fh_Inicio_Servicios_SRT, 
+     POLIZA_Tipo_Poliza_SRT,
+     POLIZA_Siniestros_Aceptados_Cantidad, 
+     POLIZA_Siniestros_Rechazados_Cantidad, 
+     POLIZA_Siniestros_EnAnalisis_Cantidad, 
+     POLIZA_Siniestros_RectCM_Cantidad, 
+     POLIZA_Siniestros_RectDic_Cantidad, 
+     POLIZA_Siniestros_RectPres_Cantidad, 
+     POLIZA_Siniestros_RevCM_Cantidad, 
+     POLIZA_Siniestros_Totales_Cantidad,
+     POLIZA_Deuda, 
+     POLIZA_%Deuda_Cuota, 
+	 POLIZA_Ultima_Cuota
+     
+FROM
+[$(vSTG_QVD)\STG_02_POLIZAS_POLIZAS.QVD](qvd)
+Where _FLAG_Es_Contrato=1 and 
+    (Exists(SUCURSALES_NPoliza,_KEY_POLIZA)  // o existe en la sucursal
+    OR Exists(_KEY_POLIZA_MOVCARTERA,_KEY_POLIZA) // o existe en los movimientos
+    ) 
+    ;
+///$tab TIPO VISITA
+TIPO_VISITA:
+LOAD KEY_TIPO_VISITA, 
+     VISITAS_Tipo, 
+     TIPO_VISITA_Descripcion
+FROM
+[$(vSTG_QVD)\STG_01_TIPO_VISITA_TIPO_VISITA.QVD]
+(qvd);
+
+///$tab CATEGORIA VISITA
+CATEGORIA_VISITA:
+LOAD _KEY_CATEGORIA_VISITA, 
+     VISITAS_Tipo_Categoria, 
+     CATEGORIA_VISITA_Cod, 
+     CATEGORIA_VISITA_Tipo, 
+     CATEGORIA_VISITA_Descripcion, 
+     CATEGORIA_VISITA_Manual_SN
+FROM
+[$(vSTG_QVD)\STG_01_CATEGORIA_VISITA_CATEGORIA_VISITA.QVD]
+(qvd);
+
+///$tab PREVENCIONISTAS POLIZAS
+PREVENCIONISTAS_POLIZAS:
+LOAD 
+	 _KEY_PREVENCIONISTA 							AS _KEY_PREVENCIONISTA_POLIZA, 
+     PREVENCIONISTAS_Tipo_Documento 				as PREVENCIONISTAS_POLIZAS_Tipo_Documento, 
+     PREVENCIONISTAS_Tipo 							as PREVENCIONISTAS_POLIZAS_Tipo, 
+     PREVENCIONISTAS_Documento 						as PREVENCIONISTAS_POLIZAS_Documento, 
+     PREVENCIONISTAS_Fecha_Alta 					as PREVENCIONISTAS_POLIZAS_Fecha_Alta, 
+     PREVENCIONISTAS_Fecha_Baja 					as PREVENCIONISTAS_POLIZAS_Fecha_Baja, 
+     PREVENCIONISTAS_Cod_Usuario 					as PREVENCIONISTAS_POLIZAS_Cod_Usuario, 
+     PREVENCIONISTAS_Email 							as PREVENCIONISTAS_POLIZAS_Email , 
+     PREVENCIONISTAS_Celular 						as PREVENCIONISTAS_POLIZAS_Celular, 
+     PREVENCIONISTAS_Documento_Empresa 				as PREVENCIONISTAS_POLIZAS_Documento_Empresa, 
+     PREVENCIONISTAS_Tablet 						as PREVENCIONISTAS_POLIZAS_Tablet, 
+     PREVENCIONISTAS_Nombre 						as PREVENCIONISTAS_POLIZAS_Nombre,
+     PREVENCIONISTAS_Supervisor 					as PREVENCIONISTAS_POLIZAS_Supervisor,
+     ITERACION_REPORTE_AMBA,
+     ITERACION_REPORTE_INTERIOR,
+     _FLAG_PREVENCIONISTA_POLIZA_NO_REGISTRADO 
+
+FROM [$(vSTG_QVD)\STG_01_PREVENCIONISTAS_PREVENCIONISTAS.QVD] (qvd);
+///$tab PREVENCIONISTAS ESTABLECIMIENTOS
+PREVENCIONISTAS_ESTABLECIMIENTOS:
+LOAD 
+	 _KEY_PREVENCIONISTA 										AS _KEY_PREVENCIONISTA_ESTABLECIMIENTO, 
+     PREVENCIONISTAS_Tipo_Documento 							as PREVENCIONISTAS_ESTABLECIMIENTOS_Tipo_Documento, 
+     PREVENCIONISTAS_Tipo 										as PREVENCIONISTAS_ESTABLECIMIENTOS_Tipo, 
+     PREVENCIONISTAS_Documento 									as PREVENCIONISTAS_ESTABLECIMIENTOS_Documento, 
+     PREVENCIONISTAS_Fecha_Alta 								as PREVENCIONISTAS_ESTABLECIMIENTOS_Fecha_Alta, 
+     PREVENCIONISTAS_Fecha_Baja 								as PREVENCIONISTAS_ESTABLECIMIENTOS_Fecha_Baja, 
+     PREVENCIONISTAS_Cod_Usuario 								as PREVENCIONISTAS_ESTABLECIMIENTOS_Cod_Usuario, 
+     PREVENCIONISTAS_Email 										as PREVENCIONISTAS_ESTABLECIMIENTOS_Email , 
+     PREVENCIONISTAS_Celular 									as PREVENCIONISTAS_ESTABLECIMIENTOS_Celular, 
+     PREVENCIONISTAS_Documento_Empresa 							as PREVENCIONISTAS_ESTABLECIMIENTOS_Documento_Empresa, 
+     PREVENCIONISTAS_Tablet 									as PREVENCIONISTAS_ESTABLECIMIENTOS_Tablet, 
+	 PREVENCIONISTAS_Nombre 									as PREVENCIONISTAS_ESTABLECIMIENTOS_Nombre,
+     PREVENCIONISTAS_Supervisor 								as PREVENCIONISTAS_ESTABLECIMIENTOS_Supervisor,
+     _FLAG_PREVENCIONISTA_ESTABLECIMIENTO_NO_REGISTRADO,
+     _FLAG_PREVENCIONISTA_OBRA_NO_REGISTRADO 
+FROM [$(vSTG_QVD)\STG_01_PREVENCIONISTAS_PREVENCIONISTAS.QVD] (qvd);
+///$tab PREVENCIONISTAS VISITAS
+PREVENCIONISTAS_VISITAS:
+LOAD _KEY_PREVENCIONISTA as _KEY_PREVENCIONISTA_VISITA, 
+     PREVENCIONISTAS_Tipo_Documento as PREVENCIONISTAS_VISITAS_Tipo_Documento, 
+     PREVENCIONISTAS_Tipo as PREVENCIONISTAS_VISITAS_Tipo, 
+     PREVENCIONISTAS_Documento as PREVENCIONISTAS_VISITAS_Documento, 
+     PREVENCIONISTAS_Fecha_Alta as PREVENCIONISTAS_VISITAS_Fecha_Alta, 
+     PREVENCIONISTAS_Fecha_Baja as PREVENCIONISTAS_VISITAS_Fecha_Baja, 
+     PREVENCIONISTAS_Cod_Usuario as PREVENCIONISTAS_VISITAS_Cod_Usuario, 
+     PREVENCIONISTAS_Email as PREVENCIONISTAS_VISITAS_Email , 
+     PREVENCIONISTAS_Celular as PREVENCIONISTAS_VISITAS_Celular, 
+     PREVENCIONISTAS_Documento_Empresa as PREVENCIONISTAS_VISITAS_Documento_Empresa, 
+     PREVENCIONISTAS_Tablet as PREVENCIONISTAS_VISITAS_Tablet, 
+     PREVENCIONISTAS_Nombre as PREVENCIONISTAS_VISITAS_Nombre,
+     PREVENCIONISTAS_Supervisor as PREVENCIONISTAS_VISITAS_Supervisor,
+     _FLAG_PREVENCIONISTA_VISITA_NO_REGISTRADO
+
+FROM
+[$(vSTG_QVD)\STG_01_PREVENCIONISTAS_PREVENCIONISTAS.QVD]
+(qvd);
+///$tab MOTIVO VISITA FALLIDA
+MOTIVO_VISITA_FALLIDA:
+LOAD _KEY_MOTIVO_VISITA_FALLIDA, 
+     VISITAS_Motivo_Fallida, 
+     MOTIVO_VISITA_FALLIDA_Descripcion_Ext, 
+     MOTIVO_VISITA_FALLIDA_Desc
+FROM
+[$(vSTG_QVD)\STG_01_MOTIVO_VISITA_FALLIDA_MOTIVO_VISITA_FALLIDA.QVD]
+(qvd);
+
+///$tab VISITAS
+VISITAS:
+LOAD _KEY_VISITAS, 
+	 VISITAS_Id, 
+     VISITAS_Contrato, 
+     VISITAS_Sucursal, 
+     VISITAS_Id_Establecimiento, 
+     VISITAS_Tipo, 
+     VISITAS_Categoria, 
+     VISITAS_Tipo_Categoria, 
+     VISITAS_Expediente, 
+     VISITAS_Fecha_Vto, 
+     _KEY_PREVENCIONISTA_VISITA, 
+     VISITAS_Fecha_Visita, 
+     VISITAS_Estado, 
+     VISITAS_Observacion, 
+     VISITAS_Denun_Incum_SN, 
+     VISITAS_Fecha_Alta, 
+     VISITAS_USR_Alta, 
+     VISITAS_Fecha_Mod, 
+     VISITAS_USR_Mod, 
+     VISITAS_Manual, 
+     VISITAS_Prevencionista_Estudio, 
+     VISITAS_Codigo_Asignado, 
+     VISITAS_Codigo_Escaneado, 
+     VISITAS_Latitud, 
+     VISITAS_Longitud, 
+     VISITAS_Constancia_Firmada, 
+     VISITAS_Motivo_Fallida, 
+     VISITAS_Fecha_Revive,
+     VISITAS_Recepcion_Informe, 
+     VISITAS_Fecha_Alta_Informe,
+     VISITAS_Visita_Efectiva_Fallida_PV,
+	 VISITAS_Año_Fecha_Visita,
+	 VISITAS_Fecha_Ultima_Visita,
+	 VISITAS_Año_Fecha_Vto,
+	 VISITAS_Visita_Tiempo_Vencida,
+	 VISITAS_Uso_Tablet,
+	 VISITAS_Geolocalizacion_SN,
+	 VISITAS_Periodo_Visita,
+	 VISITAS_Periodo_Programacion_Visita,  
+	 _FLAG_Visita_Realizada,
+	 _KEY_PERIODO_VISITA,
+	 _KEY_LINK_VISITA,
+	 VISITAS_Doc_Entregada_SN
+                                         
+FROM
+[$(vSTG_QVD)\STG_02_VISITAS_VISITAS.QVD]
+(qvd)
+
+Where 
+(
+   //que la programacion de las visitas realizadas esten dentro de los 3 años art
+  (VISITAS_Fecha_Visita >= YearStart(AddYears(Today(),-2), 0, 7) 
+   and VISITAS_Fecha_Visita <= Today())
+   or 
+   //que la programacion de las visitas pertenezca a los 3 ultimos años y sea menos igual al periodo actual
+  (_FLAG_Visita_Realizada = 0  
+   and (VISITAS_Fecha_Vto>= YearStart(AddYears(Today(),-2), 0, 7)   
+   //and VISITAS_Fecha_Vto <= date(MonthEnd( Today()))) //ESTO ES LO QUE HABRÍA QUE COMENTAR PARA QUE TRAIGA LAS FUTURAS (Lo comenté el 15-12)
+   )  
+)
+);   
+// se saca porque se cambio por el criterio de arriba
+//  (IsNull (VISITAS_Fecha_Visita) 
+//    and (VISITAS_Fecha_Vto>= YearStart(AddYears(Today(),-2), 0, 7) 
+//     or IsNull(VISITAS_Fecha_Vto))
+//   )
+
+///$tab OBJETIVO VISITAS
+OBJETIVO_VISITAS:
+LOAD _KEY_SUCURSAL_OBJETIVO,
+	 OBJETIVO_VISITAS_Establecimiento, 
+     OBJETIVO_VISITAS_CF_Frecuencia, 
+     OBJETIVO_VISITAS_Año, 
+     OBJETIVO_VISITAS_Vencimiento, 
+     OBJETIVO_VISITAS_Año_Vencimiento,
+     OBJETIVO_VISITAS_Ultima_Fecha_Visita,
+     OBJETIVO_VISITAS_Año_Fecha_Baja_Est_Pol,
+     OBJETIVO_VISITAS_Fecha_Baja_Est_Pol, //Agregado 12-12
+     _FLAG_OBJETIVO_VISITAS_FALLIDAS,
+     _FLAG_FECHA_BAJA_AÑO_OBJETIVO
+
+FROM
+[$(vSTG_QVD)\STG_12_OBJETIVO_VISITAS_con_y_sin_fallidas_OBJETIVO_VISITAS.QVD]
+(qvd);
+///$tab LINK_CVSO
+//1) Armar el conjunto completo de póliza & período existente en Cartera, Visitas y Siniestros
+
+AUX_LINK_SUCURSAL_PERIODO:
+LOAD
+	_KEY_POLIZA_MOVCARTERA								AS _KEY_POLIZA_LINK,
+	MOVCARTERA_Periodo 									AS _KEY_PERIODO_LINK,
+	Date#(Left(MOVCARTERA_Periodo,4),'YYYY')			AS _KEY_YEAR_LINK,
+	makedate(Left(MOVCARTERA_Periodo,4)
+         ,right(MOVCARTERA_Periodo,2)
+         ,1)											AS _KEY_FECHA_LINK,
+	_KEY_POLIZA_MOVCARTERA&'-'&MOVCARTERA_Periodo		AS _KEY_POLIZA_PERIODO_EXISTS
+	    
+RESIDENT MOVIMIENTOS_CARTERA;
+
+Concatenate (AUX_LINK_SUCURSAL_PERIODO)
+LOAD
+	VISITAS_Contrato 									AS _KEY_POLIZA_LINK,
+	_KEY_PERIODO_VISITA 								AS _KEY_PERIODO_LINK,
+	Date#(Left(_KEY_PERIODO_VISITA,4),'YYYY')			AS _KEY_YEAR_LINK,
+	makedate(Left(_KEY_PERIODO_VISITA,4)
+         ,right(_KEY_PERIODO_VISITA,2)
+         ,1)											AS _KEY_FECHA_LINK,
+	VISITAS_Contrato&'-'&_KEY_PERIODO_VISITA 		AS _KEY_POLIZA_PERIODO_EXISTS
+RESIDENT VISITAS
+Where not Exists(_KEY_POLIZA_PERIODO_EXISTS,VISITAS_Contrato&'-'&_KEY_PERIODO_VISITA);
+
+Concatenate (AUX_LINK_SUCURSAL_PERIODO)
+LOAD
+	_KEY_POLIZA_SINIESTROS								AS _KEY_POLIZA_LINK,
+	SINIESTROS_KEY_PERIODO								AS _KEY_PERIODO_LINK,
+	Date#(Left(SINIESTROS_KEY_PERIODO,4),'YYYY')		AS _KEY_YEAR_LINK,
+	makedate(Left(SINIESTROS_KEY_PERIODO,4)
+         ,right(SINIESTROS_KEY_PERIODO,2)
+         ,1)											AS _KEY_FECHA_LINK,
+	_KEY_POLIZA_SINIESTROS&'-'&SINIESTROS_KEY_PERIODO 	AS _KEY_POLIZA_PERIODO_EXISTS
+RESIDENT SINIESTROS
+Where not Exists(_KEY_POLIZA_PERIODO_EXISTS,_KEY_POLIZA_SINIESTROS&'-'&SINIESTROS_KEY_PERIODO);
+
+Drop Field _KEY_POLIZA_PERIODO_EXISTS;
+
+//1.1) Se agrega el período de la fecha de baja de la Póliza, que se va a utilizar para el punto 2.1)
+Left Join (AUX_LINK_SUCURSAL_PERIODO)
+Load Distinct
+	_KEY_POLIZA_MOVCARTERA								AS _KEY_POLIZA_LINK,
+    MOVCARTERA_Fh_Baja_Periodo							AS Temp_MOVCARTERA_Fh_Baja_Periodo 
+RESIDENT MOVIMIENTOS_CARTERA;
+
+//2) Abrir estos datos por Sucursales
+
+Left Join (AUX_LINK_SUCURSAL_PERIODO)
+LOAD
+     SUCURSALES_NPoliza 														AS _KEY_POLIZA_LINK, //Join
+     SUCURSALES_Id_Establecimiento 												AS _KEY_SUCURSALES,
+     SUCURSALES_Fecha_Baja														AS _Temp_Fecha_Baja,
+     Year(SUCURSALES_Fecha_Baja)&Num(Month(SUCURSALES_Fecha_Baja),'00')			AS PERIODO_FECHA_BAJA_SUCURSALES,
+     Year(SUCURSALES_Fecha_Alta)&Num(Month(SUCURSALES_Fecha_Alta),'00')			AS PERIODO_FECHA_ALTA_SUCURSALES,
+     Date(MonthStart(IO_PERIODO_FEINICIO),'YYYYMM') 							AS IO_PERIODO_FEINICIO, 
+	 Date(MonthStart(IO_PERIODO_FEFIN),'YYYYMM') 								AS IO_PERIODO_FEFIN, 
+	 Date(MonthStart(IO_PERIODO_IO_FESUSPENSION),'YYYYMM') 						AS IO_PERIODO_IO_FESUSPENSION, 
+	 Date(MonthStart(IO_PERIODO_FEREINICIO),'YYYYMM') 							AS IO_PERIODO_FEREINICIO,
+	 _FLAG_CASAS_ESTABLECIMIENTOS_OBRAS											AS _FLAG_CASAS_ESTABLECIMIENTOS_OBRAS_TMP
+RESIDENT SUCURSALES
+Where SUCURSALES_Fecha_Alta <= Today() or IsNull(SUCURSALES_Fecha_Alta) ; //Modificado 14-11
+
+//2.1) Se levanta la tabla auxiliar y se incorpora un Flag para determinar si la sucursal estaba dada de baja en el período
+LINK_SUCURSAL_PERIODO:
+//LOAD PRECEDENTE para generar _FLAG_BAJA_SUCURSALES, a partir de _FLAG_BAJA_OBRA y _FLAG_BAJA_ESTABLECIMIENTO
+LOAD
+*,
+if(Temp_MOVCARTERA_Fh_Baja_Periodo<Date#(_KEY_PERIODO_LINK,'YYYYMM'),1, //Agregado 4-1
+	IF(not isnull(_FLAG_BAJA_OBRA),_FLAG_BAJA_OBRA,_FLAG_BAJA_ESTABLECIMIENTO)) AS _FLAG_BAJA_SUCURSALES
+;
+
+//LOAD PRECEDENTE para generar _FLAG_BAJA_OBRA, a partir de los flags de obra sin suspensión (_FLAG_BAJA_OBRA_SINSUSP) y obra con suspensión y sin reinicio (_FLAG_BAJA_OBRA_SUSP)
+//Valores: 1 si está dada de baja, 0 si está vigente. Se considera vigente si en algún momento del período estuvo activa
+
+LOAD
+*,
+IF(_FLAG_CASAS_ESTABLECIMIENTOS_OBRAS_TMP='Obras',		//Si se trata de una obra
+IF(_FLAG_BAJA_OBRA_SINSUSP=1 OR _FLAG_BAJA_OBRA_SUSP=1	//Utilizo los flags creados anteriormente para las obras sin suspensión (solo tienen inicio y fin) y para las obras con suspensión y sin reinicio
+	,1
+	,IF(_FLAG_BAJA_OBRA_SINSUSP=0 OR _FLAG_BAJA_OBRA_SUSP=0
+		,0
+		
+//Ahora desarrollo la lógica para aquellas obras que tienen inicio, suspensión, reinicio y fin		
+//Valores: 1 si está dada de baja, 0 si está vigente. Se considera vigente si en algún momento del período estuvo activa
+		,IF(not (IsNull(IO_PERIODO_IO_FESUSPENSION) and IsNull(IO_PERIODO_FEREINICIO)) 
+			,IF(IO_PERIODO_FEINICIO<=Date#(_KEY_PERIODO_LINK,'YYYYMM')  
+				,IF(IO_PERIODO_IO_FESUSPENSION<Date#(_KEY_PERIODO_LINK,'YYYYMM')
+					,IF(IO_PERIODO_FEREINICIO<=Date#(_KEY_PERIODO_LINK,'YYYYMM')
+				  		 ,IF(IO_PERIODO_FEFIN<Date#(_KEY_PERIODO_LINK,'YYYYMM')
+						,1
+						,0
+						)
+						,1)
+					,0)		//Fh Suspensión Mayor			
+				,1)
+			,1)
+		)	
+	)
+ )
+
+AS _FLAG_BAJA_OBRA
+
+ 
+;
+//Calculo la condición para el _FLAG_BAJA_ESTABLECIMIENTO
+//Valores: 1 si está dada de baja, 0 si está vigente. Se considera vigente si en algún momento del período estuvo activa
+LOAD*,
+		IF(PERIODO_FECHA_ALTA_SUCURSALES<=_KEY_PERIODO_LINK, 
+			IF(PERIODO_FECHA_BAJA_SUCURSALES<_KEY_PERIODO_LINK,1,0)) AS _FLAG_BAJA_ESTABLECIMIENTO, //DESPUÉS CAMBIAR POR "ESTABLECIMIENTOS"
+
+//Calculo la condición para dos tipos de obras.
+//Valores: 1 si está dada de baja, 0 si está vigente. Se considera vigente si en algún momento del período estuvo activa
+		
+		//OBRA NORMAL, SIN SUSPENSIÓN
+		
+		IF(IsNull(IO_PERIODO_IO_FESUSPENSION),
+			IF(IO_PERIODO_FEINICIO<=Date#(_KEY_PERIODO_LINK,'YYYYMM'), 
+				IF(IO_PERIODO_FEFIN<Date#(_KEY_PERIODO_LINK,'YYYYMM'),1,0))) AS _FLAG_BAJA_OBRA_SINSUSP,
+
+		//OBRA CON SUSPENSIÓN Y SIN REINICIO	
+		
+		IF(not IsNull(IO_PERIODO_IO_FESUSPENSION) and IsNull(IO_PERIODO_FEREINICIO),
+			IF(IO_PERIODO_FEINICIO<=Date#(_KEY_PERIODO_LINK,'YYYYMM'),
+				IF(IO_PERIODO_IO_FESUSPENSION<Date#(_KEY_PERIODO_LINK,'YYYYMM'),1,0))) AS _FLAG_BAJA_OBRA_SUSP
+		
+		
+RESIDENT AUX_LINK_SUCURSAL_PERIODO;
+
+Drop Fields PERIODO_FECHA_BAJA_SUCURSALES,PERIODO_FECHA_ALTA_SUCURSALES,IO_PERIODO_FEINICIO, IO_PERIODO_FEFIN,IO_PERIODO_IO_FESUSPENSION,IO_PERIODO_FEREINICIO, _FLAG_CASAS_ESTABLECIMIENTOS_OBRAS_TMP, _FLAG_BAJA_OBRA_SINSUSP, _FLAG_BAJA_OBRA_SUSP, _FLAG_BAJA_ESTABLECIMIENTO from LINK_SUCURSAL_PERIODO;
+Drop Table AUX_LINK_SUCURSAL_PERIODO;
+
+//3) Joinear la información de Cartera y armar las claves 
+Left Join (LINK_SUCURSAL_PERIODO)
+LOAD
+	_KEY_POLIZA_MOVCARTERA								AS _KEY_POLIZA_LINK,  //Join
+	MOVCARTERA_Periodo 									AS _KEY_PERIODO_LINK, //Join
+	_KEY_POLIZA_MOVCARTERA&'-'&MOVCARTERA_Periodo		AS _KEY_LINK_CARTERA,  //CLAVE CARTERA
+    1                                                   AS _FLAG_LINK_CARTERA    
+RESIDENT MOVIMIENTOS_CARTERA;
+
+//4) Joinear la información de Visitas y armar las claves
+Left Join (LINK_SUCURSAL_PERIODO)
+LOAD DISTINCT
+	 VISITAS_Id_Establecimiento 						  AS _KEY_SUCURSALES, //Join
+     _KEY_PERIODO_VISITA      							  AS _KEY_PERIODO_LINK, //Join
+    // VISITAS_Id_Establecimiento&'-'&_KEY_PERIODO_VISITA	  AS _KEY_LINK_VISITA, //CLAVE VISITAS
+    VISITAS_Id_Establecimiento&'-'&_KEY_PERIODO_VISITA&'-'&VISITAS_Id AS _KEY_LINK_VISITA, //CLAVE VISITAS
+     1                                                    AS _FLAG_LINK_VISITA,  
+ 	 VISITAS_Visita_Efectiva_Fallida_PV					  AS _KEY_E_F_PV
+ 	
+RESIDENT VISITAS;
+
+//5) Joinear la información de Siniestros y armar las claves 
+Left Join (LINK_SUCURSAL_PERIODO)
+LOAD
+	_KEY_POLIZA_SINIESTROS								AS _KEY_POLIZA_LINK, 	//Join
+	SINIESTROS_KEY_PERIODO 								AS _KEY_PERIODO_LINK, //Join
+	_KEY_POLIZA_SINIESTROS&'-'&SINIESTROS_KEY_PERIODO 	AS _KEY_LINK_SINIESTRO, //CLAVE SINIESTROS
+    1                                                   AS _FLAG_LINK_SINIESTRO     	
+RESIDENT SINIESTROS;
+
+//6) Joinear la información de Objetivo
+
+Left Join (LINK_SUCURSAL_PERIODO)
+LOAD
+	 OBJETIVO_VISITAS_Establecimiento 					AS _KEY_SUCURSALES, //Join
+     Date#(OBJETIVO_VISITAS_Año,'YYYY')					AS _KEY_YEAR_LINK, //Join
+     OBJETIVO_VISITAS_Establecimiento&'-'&
+     Date#(OBJETIVO_VISITAS_Año,'YYYY')					AS _KEY_SUCURSAL_OBJETIVO, //CLAVE OBJETIVO VISITAS     //Modificado 24/11
+     1                                                  AS _FLAG_LINK_OBJETIVO_VISITA,         //Modificado 24/11
+     OBJETIVO_VISITAS_Vencimiento						AS OBJETIVO_VISITAS_Vto,
+   	 Date#(OBJETIVO_VISITAS_Año,'YYYY')					AS OBJETIVO_VISITAS_Año_Link
+   
+RESIDENT OBJETIVO_VISITAS;
+
+//7) Se hace un join y se agrega un campo para ver si la clave Establecimiento-Año ya tiene el flag de E/F/PV (_KEY_E_F_PV)
+
+Left Join(LINK_SUCURSAL_PERIODO)
+LOAD
+	_KEY_SUCURSAL_OBJETIVO,
+	Count(_KEY_E_F_PV) as COUNT_KEY_E_F_PV
+
+RESIDENT LINK_SUCURSAL_PERIODO
+
+Group BY _KEY_SUCURSAL_OBJETIVO;
+
+//8) Se crea una nueva tabla a partir de la anterior y se le agrega una lógica para aquellos Establecimiento-Año que no tienen E/F/PV. A estos se les asigna B o PP.
+
+LINK_CVSO:
+Load
+	*,
+	IF(COUNT_KEY_E_F_PV>=1, _KEY_E_F_PV,
+										if(_Temp_Fecha_Baja=Date('31/12/'&OBJETIVO_VISITAS_Año_Link), 'B', //Agregado 5-12
+											if(OBJETIVO_VISITAS_Vto< Date('31/12/'&OBJETIVO_VISITAS_Año_Link), 'B', 
+												if(OBJETIVO_VISITAS_Vto>=Date('31/12/'&OBJETIVO_VISITAS_Año_Link), 'PP')))) as KEY_E_F_PV_B_PP,
+	
+	//Se agrega flag para ADHoc Estab. Poliza con/sin Stro 										
+	IF(
+		NOT ISNULL( _KEY_POLIZA_LINK) AND NOT ISNULL(_KEY_LINK_SINIESTRO)
+		,1
+		,0
+	)														AS _FLAG_LINK_Poliza_con_Stro,
+	IF(
+		NOT ISNULL( _KEY_POLIZA_LINK) AND NOT ISNULL(_KEY_LINK_SINIESTRO)
+		,0
+		,1
+	)														AS _FLAG_LINK_Poliza_SIn_Stro
+
+RESIDENT LINK_SUCURSAL_PERIODO;
+
+Drop Table LINK_SUCURSAL_PERIODO;
+Drop Fields COUNT_KEY_E_F_PV,_KEY_E_F_PV, OBJETIVO_VISITAS_Vto, OBJETIVO_VISITAS_Año_Link, _Temp_Fecha_Baja, Temp_MOVCARTERA_Fh_Baja_Periodo;
+
+
+///$tab ESTADO_463
+AUX_ESTADO_463:
+NoConcatenate
+//1) Del objetivo levanto Año y establecimiento
+
+LOAD
+	OBJETIVO_VISITAS_Establecimiento 					AS AUX_ESTADO_463_KEY_SUCURSALES, 
+	OBJETIVO_VISITAS_Año								AS AUX_ESTADO_463_KEY_YEAR_LINK
+
+Resident OBJETIVO_VISITAS;
+
+//2) Agregar una E en caso de los establecimientos que tuvieron visitas efectivas
+
+Left Join (AUX_ESTADO_463)
+LOAD Distinct 
+     VISITAS_Id_Establecimiento AS AUX_ESTADO_463_KEY_SUCURSALES, //Join
+     VISITAS_Año_Fecha_Visita AS AUX_ESTADO_463_KEY_YEAR_LINK,	//Join
+     VISITAS_Visita_Efectiva_Fallida_PV AS AUX_ESTADO_463_E,
+ 	 VISITAS_Id_Establecimiento&'-'&VISITAS_Año_Fecha_Visita AS _KEY_ESTABLECIMIENTO_OBJETIVO_EXISTS_E
+FROM
+[$(vSTG_QVD)\STG_02_VISITAS_VISITAS.QVD](qvd)
+
+Where VISITAS_Visita_Efectiva_Fallida_PV='E';
+
+//3) Le joineo las visitas fallidas
+
+FALLIDAS:
+Left Join (AUX_ESTADO_463)
+LOAD distinct
+  VISITAS_Id_Establecimiento AS AUX_ESTADO_463_KEY_SUCURSALES,
+  VISITAS_Año_Fecha_Visita AS AUX_ESTADO_463_KEY_YEAR_LINK,
+  VISITAS_Visita_Efectiva_Fallida_PV AS AUX_ESTADO_463_F,
+  VISITAS_Id_Establecimiento&'-'&VISITAS_Año_Fecha_Visita AS _KEY_ESTABLECIMIENTO_OBJETIVO_EXISTS_F
+
+FROM
+[$(vSTG_QVD)\STG_02_VISITAS_VISITAS.QVD](qvd)
+
+Where VISITAS_Visita_Efectiva_Fallida_PV='F' and not Exists(_KEY_ESTABLECIMIENTO_OBJETIVO_EXISTS_E,VISITAS_Id_Establecimiento&'-'&VISITAS_Año_Fecha_Visita);
+
+//4) Le joineo las pendientes de visita
+
+PENDIENTES_DE_VISITA:
+Left Join (AUX_ESTADO_463)
+LOAD distinct
+ VISITAS_Id_Establecimiento AS AUX_ESTADO_463_KEY_SUCURSALES,
+ VISITAS_Año_Fecha_Vto AS AUX_ESTADO_463_KEY_YEAR_LINK,
+ VISITAS_Visita_Efectiva_Fallida_PV AS AUX_ESTADO_463_PV,
+ VISITAS_Id_Establecimiento&'-'&VISITAS_Año_Fecha_Vto AS _KEY_ESTABLECIMIENTO_OBJETIVO_EXISTS_PV
+ 
+FROM
+[$(vSTG_QVD)\STG_02_VISITAS_VISITAS.QVD](qvd)
+
+Where VISITAS_Visita_Efectiva_Fallida_PV='PV' 
+and not Exists(_KEY_ESTABLECIMIENTO_OBJETIVO_EXISTS_E,VISITAS_Id_Establecimiento&'-'&VISITAS_Año_Fecha_Vto) 
+and not Exists(_KEY_ESTABLECIMIENTO_OBJETIVO_EXISTS_F,VISITAS_Id_Establecimiento&'-'&VISITAS_Año_Fecha_Vto)
+; 
+
+//5) Le joineo las pendientes de programación y dadas de baja sin visita
+
+PENDIENTES_DE_PROGRAMACION_Y_BAJA:
+Left Join (AUX_ESTADO_463)
+LOAD distinct
+OBJETIVO_VISITAS_Establecimiento 														AS AUX_ESTADO_463_KEY_SUCURSALES, 
+OBJETIVO_VISITAS_Año																	AS AUX_ESTADO_463_KEY_YEAR_LINK,
+if(OBJETIVO_VISITAS_Fecha_Baja_Est_Pol=Date('31/12/'&OBJETIVO_VISITAS_Año),'B',
+	if(OBJETIVO_VISITAS_Vencimiento< Date('31/12/'&OBJETIVO_VISITAS_Año), 'B', 
+		if(OBJETIVO_VISITAS_Vencimiento>=Date('31/12/'&OBJETIVO_VISITAS_Año), 'PP'))) 	AS AUX_ESTADO_463_B_PP
+
+Resident OBJETIVO_VISITAS
+Where not Exists (_KEY_ESTABLECIMIENTO_OBJETIVO_EXISTS_E,OBJETIVO_VISITAS_Establecimiento&'-'&OBJETIVO_VISITAS_Año)
+and not Exists (_KEY_ESTABLECIMIENTO_OBJETIVO_EXISTS_F,OBJETIVO_VISITAS_Establecimiento&'-'&OBJETIVO_VISITAS_Año)
+and not Exists (_KEY_ESTABLECIMIENTO_OBJETIVO_EXISTS_PV,OBJETIVO_VISITAS_Establecimiento&'-'&OBJETIVO_VISITAS_Año);
+
+//6) Levanto todo y le agrego el campo ESTADO_463 que une todos los estados anteriores (E,F,PV,B,PP). Lo joineo con LINK_CVSO
+
+ESTADO_463:
+Left Join(LINK_CVSO)
+LOAD Distinct
+if(not IsNull(AUX_ESTADO_463_E),AUX_ESTADO_463_E,
+	if(not IsNull(AUX_ESTADO_463_F),AUX_ESTADO_463_F,
+		if(not IsNull(AUX_ESTADO_463_PV),AUX_ESTADO_463_PV,
+			AUX_ESTADO_463_B_PP)))						AS ESTADO_463,
+			
+AUX_ESTADO_463_KEY_SUCURSALES							AS _KEY_SUCURSALES, //Join
+Date#(AUX_ESTADO_463_KEY_YEAR_LINK,'YYYY')				AS _KEY_YEAR_LINK	//Join
+
+Resident AUX_ESTADO_463;
+Drop Table AUX_ESTADO_463;
+///$tab CALENDARIO
+CALENDARIO_VISITAS:
+LOAD Calendario_QFiscal AS CALENDARIO_VISITAS_QFiscal, 
+     Calendario_MesFiscal_Nombre AS CALENDARIO_VISITAS_MesFiscal_Nombre, 
+     Calendario_Año AS CALENDARIO_VISITAS_Año, 
+     Calendario_Mes AS CALENDARIO_VISITAS_Mes, 
+     Day(Calendario_Dia) AS CALENDARIO_VISITAS_Dia,
+     Calendario_Periodo AS CALENDARIO_VISITAS_Periodo , 
+     Calendario_Mes_Nombre AS CALENDARIO_VISITAS_Mes_Nombre, 
+     Calendario_Q AS CALENDARIO_VISITAS_Q, 
+     Calendario_MesFiscal AS CALENDARIO_VISITAS_MesFiscal, 
+     Calendario_AñoFiscal AS CALENDARIO_VISITAS_AñoFiscal, 
+     _KEY_Calendario AS VISITAS_Fecha_Visita, 
+     Calendario_Fecha AS CALENDARIO_VISITAS_Fecha, 
+     Calendario_Orden AS CALENDARIO_VISITAS_Orden, 
+     Calendario_AñoART AS CALENDARIO_VISITAS_AñoART,
+     CONTINUO as CALENDARIO_VISITAS_CONTINUO,
+     Calendario_Periodo_Num as CALENDARIO_VISITAS_Periodo_Num
+FROM
+[$(vCALENDARIO)\STG_01_CALENDARIO_Calendario_Fiscal.QVD]
+(qvd)
+
+WHERE Exists(VISITAS_Fecha_Visita,_KEY_Calendario);
+
+CALENDARIO_VIGENCIA:
+LOAD
+     _KEY_Calendario AS _KEY_FECHA_MOV,
+ 	Calendario_Año AS CALENDARIO_VIGENCIA_Año,
+    Calendario_Mes AS CALENDARIO_VIGENCIA_Mes, 
+	Calendario_Periodo AS CALENDARIO_VIGENCIA_Periodo,
+    CONTINUO AS CALENDARIO_VIGENCIA_CONTINUO,
+	Calendario_AñoART AS CALENDARIO_VIGENCIA_AñoART,
+    Calendario_MesFiscal AS CALENDARIO_VIGENCIA_MesFiscal,
+    Calendario_AñoFiscal AS CALENDARIO_VIGENCIA_AñoFiscal, 
+	Calendario_AñoDesde_ART AS CALENDARIO_VIGENCIA_AñoDesde_ART, 
+    Calendario_AñoHasta_ART AS CALENDARIO_VIGENCIA_AñoHasta_ART,
+    Calendario_QFiscal AS CALENDARIO_VIGENCIA_QFiscal, 
+    Calendario_MesFiscal_Nombre AS CALENDARIO_VIGENCIA_MesFiscal_Nombre, 
+    Calendario_Mes_Nombre AS CALENDARIO_VIGENCIA_Mes_Nombre, 
+    Calendario_Q AS CALENDARIO_VIGENCIA_Q,  
+    Day(Calendario_Dia) AS CALENDARIO_VIGENCIA_Dia,
+    Calendario_Fecha AS CALENDARIO_VIGENCIA_Fecha, 
+    Calendario_Orden AS CALENDARIO_VIGENCIA_Orden
+FROM
+[$(vCALENDARIO)\STG_01_CALENDARIO_Calendario_Fiscal.QVD]
+(qvd)
+
+WHERE Exists(_KEY_FECHA_MOV,_KEY_Calendario);
+
+// _KEY_CALENDARIO_SINIESTROS es de la fecha de denuncia
+CALENDARIO_SINIESTROS:
+LOAD 
+	 Num(_KEY_Calendario) AS _KEY_CALENDARIO_SINIESTROS,
+	 Calendario_QFiscal AS CALENDARIO_SINIESTROS_QFiscal, 
+     Calendario_MesFiscal_Nombre AS CALENDARIO_SINIESTROS_MesFiscal_Nombre, 
+     Calendario_Año AS CALENDARIO_SINIESTROS_Año_Denuncia, 
+     Calendario_Mes AS CALENDARIO_SINIESTROS_Mes_Denuncia, 
+     Day(Calendario_Dia) AS CALENDARIO_SINIESTROS_Dia_Denuncia, 
+     Calendario_Periodo AS CALENDARIO_SINIESTROS_Periodo, 
+     Calendario_Mes_Nombre AS CALENDARIO_SINIESTROS_Mes_Nombre, 
+     Calendario_Q AS CALENDARIO_SINIESTROS_Q, 
+     Calendario_MesFiscal AS CALENDARIO_SINIESTROS_MesFiscal, 
+     Calendario_AñoFiscal AS CALENDARIO_SINIESTROS_AñoFiscal, 
+     PERIODO_FISCAL AS CALENDARIO_SINIESTROS_Periodo_Fiscal, 
+     Calendario_Fecha AS CALENDARIO_SINIESTROS_Fecha, 
+     Calendario_Orden AS CALENDARIO_SINIESTROS_Orden, 
+     Calendario_AñoART AS CALENDARIO_SINIESTROS_AñoART, 
+     CONTINUO AS CALENDARIO_SINIESTROS_CONTINUO,
+     Num(Calendario_Mes,'00') as CALENDARIO_SINIESTROS_Mes_Numero
+
+FROM
+[$(vCALENDARIO)\STG_01_CALENDARIO_Calendario_Fiscal.QVD]
+(qvd)
+
+WHERE Exists (_KEY_CALENDARIO_SINIESTROS, NUM(_KEY_Calendario));
+
+CALENDARIO_LINK_CVSO:
+LOAD
+	_KEY_Calendario AS _KEY_FECHA_LINK,
+ 	Calendario_Año AS CALENDARIO_LINK_Año,
+    Calendario_Mes AS CALENDARIO_LINK_Mes, 
+	Calendario_Periodo AS CALENDARIO_LINK_Periodo,
+    CONTINUO AS CALENDARIO_LINK_CONTINUO,
+	Calendario_AñoART AS CALENDARIO_LINK_AñoART,
+    Calendario_MesFiscal AS CALENDARIO_LINK_MesFiscal,
+    Calendario_MesFiscal_Nombre AS CALENDARIO_LINK_MesFiscal_Nombre, 
+    Calendario_AñoFiscal AS CALENDARIO_LINK_AñoFiscal, 
+	Calendario_AñoDesde_ART AS CALENDARIO_LINK_AñoDesde_ART, 
+    Calendario_AñoHasta_ART AS CALENDARIO_LINK_AñoHasta_ART,
+     Calendario_Dias_Mes AS CALENDARIO_LINK_Dias_Mes, 
+     Calendario_Dias_Tablero AS CALENDARIO_LINK_Dias_Tablero
+          
+FROM
+[$(vCALENDARIO)\STG_01_CALENDARIO_Calendario_Fiscal.QVD]
+(qvd)
+
+WHERE Exists (_KEY_FECHA_LINK, _KEY_Calendario)
+and Calendario_Periodo <= Date#(Year(Today())&Num(Month(Today()),'00'),'YYYYMM'); //Agregado el 2-1
+
+CALENDARIO_PROGRAMACION_VISITAS:
+LOAD 
+     Calendario_Año as CALENDARIO_PROGRAMACION_VISITAS_Año, 
+     Calendario_Mes as CALENDARIO_PROGRAMACION_VISITAS_Mes, 
+     Day(Calendario_Dia) as CALENDARIO_PROGRAMACION_VISITAS_Dia, 
+     Calendario_Periodo as CALENDARIO_PROGRAMACION_VISITAS_Periodo, 
+     Calendario_MesFiscal as CALENDARIO_PROGRAMACION_VISITAS_MesFiscal, 
+     Calendario_AñoFiscal as CALENDARIO_PROGRAMACION_VISITAS_AñoFiscal, 
+     _KEY_Calendario as VISITAS_Fecha_Vto,
+     CONTINUO as CALENDARIO_PROGRAMACION_VISITAS_CONTINUO
+FROM
+[$(vCALENDARIO)\STG_01_CALENDARIO_Calendario_Fiscal.QVD]
+(qvd)
+
+WHERE Exists (VISITAS_Fecha_Vto, _KEY_Calendario);
+///$tab INDICADORES GRÁFICOS
+Indicadores_Graficos_Contratos:
+noConcatenate
+load * inline 
+[IndicadoresGraficosContratos
+Ver año actual
+Ver año anterior
+];
+Indicadores_Graficos_Obras:
+noConcatenate
+load * inline 
+[IndicadoresGraficosObras
+Ver año actual
+Ver año anterior
+];
+Indicadores_Graficos_Siniestros:
+noConcatenate
+load * inline 
+[IndicadoresGraficosSiniestros
+Ver año actual
+Ver año anterior
+];
+///$tab AD HOC
+//------- ADHoc Visitas
+
+Selectores_Adhoc_Atributos_Visitas:
+NoConcatenate
+Load * Inline 
+[Atributos_Visitas_Visitas
+ID Visita
+ID Establecimiento
+Año Visita
+Año Programación Visita
+Año Fiscal Visita
+Año Fiscal Programación Visita
+Período Visita
+Período Programación Visita
+Fh. Visita
+Fh. prog. Visita
+Fh. Registro Visita
+Fh. Alta Informe
+Fh. Última Visita
+Uso Tablet
+Doc Entregada
+Visita E/F/PV
+Tipo Visita
+Categoría Visita
+Motivo Visita Fallida
+Prevencionista Visita
+Supervisor Visita
+Región
+Provincia
+Segmento
+En tpo / Vencida
+Rango Cápitas
+Geolocalización
+Gran CIIU Estab.
+CIIU 3 díg. Estab.
+];
+
+Atributos_Polizas_Visitas:
+NoConcatenate
+Load * Inline 
+[Atributos_Visitas_Polizas
+Programa normativo
+Gran.CIIU Poli.
+CIIU 3 Poli.
+];
+
+
+Selectores_Adhoc_Indicadores_Visitas:
+NoConcatenate
+Load * Inline 
+[Indicadores_Visitas
+#Visitas Programadas
+#Visitas Realizadas
+#Visitas Efectivas
+#Visitas Fallidas
+];
+
+//------- ADHoc Establecimiento
+
+
+
+
+
+
+
+
+
+Selectores_Adhoc_Atributos:
+NoConcatenate
+Load * Inline 
+[Atributos_Estab_Visitas
+ID Visita
+Año Visita
+Año Programación Visita
+Año Fiscal Visita
+Año Fiscal Programación Visita
+Período Visita
+Período Programación Visita
+Fh. Visita
+Fh. prog. Visita
+Fh. Registro Visita
+Fh. Alta Informe
+Fh. Última Visita
+Uso Tablet
+Doc Entregada
+Visita E/F/PV
+Tipo Visita
+Categoría Visita
+Motivo Visita Fallida
+Prevencionista Visita
+Supervisor Visita
+En tpo / Vencida
+Rango Cápitas
+Geolocalización
+];
+
+Selectores_Adhoc_Atributos_establecimientos:
+NoConcatenate
+Load * Inline 
+[Atributos_Estab_Estab
+Contrato-Sucursal
+Localidad
+Región
+Provincia
+Segmento
+Gran CIIU Estab.
+CIIU 3 díg. Estab.
+Frecuencia CIIU
+Código Postal
+CPA
+Fh. Alta Establecimiento
+Descripcion Sucursales
+Tipo de EStab.
+CIIU Principal
+Calle
+Afiliados
+Estado Acept. Estab.
+Nro. Obra
+Nro. Consecutivo
+Nro. Casa
+Nro. Piso
+Nro. Escalera
+Nro. Puerta
+Telefono
+Fax
+Email
+Fh. Baja Estab.
+Fh. Inicio Actividad
+SRT Aceptado
+Codigo SRT
+Tipo Actividad
+Tipo Obra
+CIIU R2
+CIIU R3
+Fh. Inicio Obra
+Fh. Fin Obra
+Fh. Supervision Obra
+Fh. Reinicio Obra
+Visitable S/N
+Obra Visitable S/N
+Prevencionista Nombre
+Prevencionista Documento
+Prevencionista Supervisor
+Casa/Estab/Obra
+#Stros. Acept. Estab.
+#Stros. Rechaz. Estab.
+#Stros. En Análisis Estab.
+#Stros. Rect. CM Estab.
+#Stros. Rect. Dic. Estab.
+#Stros. Rect. Pres. Estab.
+#Stros. Rev. CM Estab.
+#Stros. Totales Estab.
+Tuvo Visita S/N
+Tuvo Visita Programada S/N
+];
+
+Atributos_Polizas:
+NoConcatenate
+Load * Inline 
+[Atributos_Estab_Polizas
+Programa normativo
+Gran.CIIU Poli.
+CIIU 3 Poli.
+Rango Cápitas
+Cápitas Contrato
+Fh. Inicio Servicios SRT
+Fh. Baja Póliza
+Tipo Póliza SRT
+Nro Póliza
+Deuda
+Cuota Tot. Últ. Emisión
+%Deuda/Cuota
+#Stros. Acept. Poli.
+#Stros. Rechaz. Poli.
+#Stros. En Análisis Poli.
+#Stros. Rect. CM Poli.
+#Stros. Rect. Dic. Poli.
+#Stros. Rect. Pres. Poli.
+#Stros. Rev. CM Poli.
+#Stros. Totales Poli.
+];
+
+
+//Atributos_Siniestros:
+//NoConcatenate
+//Load * Inline 
+//[Atributos_Siniestros
+//Estado Acept.
+//Establecimiento Stro.
+//];
+//
+Selectores_Adhoc_Indicadores:
+NoConcatenate
+Load * Inline 
+[Indicadores_Estab
+#Establecimientos
+#Pólizas
+#Contratos c/Exposición
+#Suc. c/Exp. Visitables
+];
+//#Cantidad de Stros Aceptados
+//#Cantidad de Stros Rechazados
+//#Poliza con Siniestros
+//#Poliza sin Siniestros
+//#Estab con Siniestros
+//#Estab sin Siniestros
+
+
+//------- ADHoc general
+Selectores_Adhoc_Totalizadores:
+NoConcatenate
+Load * Inline 
+[Totalizadores
+Total
+SubTotal1
+SubTotal2
+SubTotal3
+];
