@@ -1985,10 +1985,346 @@
   <FieldTags>
     <ScriptBased>
       <FieldTagData>
+        <Tag>$ascii</Tag>
+        <FieldNames>
+          <String>_KEY_LINK_CARTERA</String>
+          <String>_FLAG_Tipo_MovimientoCartera</String>
+          <String>_KEY_DNI_POLIZA</String>
+          <String>MOVCARTERA_Tipo_Poliza</String>
+          <String>AGRUPACION_INF_CARTERA_CONTRATOS</String>
+          <String>RangoCapitasAgrupado</String>
+          <String>_KEY_SUCURSALES</String>
+          <String>SUCURSALES_Id_Establecimiento</String>
+          <String>SUCURSALES_Email</String>
+          <String>SUCURSALES_Domicilio_Normal</String>
+          <String>SUCURSALES_Usuario</String>
+          <String>SUCURSALES_Represen_SN</String>
+          <String>SUCURSALES_Represen_Manual</String>
+          <String>SUCURSALES_Ejecutivo</String>
+          <String>SUCURSALES_RC_SN_RGRL_OKALTA</String>
+          <String>SUCURSALES_Clasif</String>
+          <String>SUCURSALES_Clasif_Manual</String>
+          <String>SUCURSALES_SRT_Aceptado</String>
+          <String>SUCURSALES_Usr_Modif</String>
+          <String>SUCURSALES_Visitable_SN</String>
+          <String>SUCURSALES_Provincia</String>
+          <String>SUCURSALES_Region</String>
+          <String>_FLAG_CASAS_ESTABLECIMIENTOS_OBRAS</String>
+          <String>SUCURSALES_Prog_Seg_SN</String>
+          <String>IO_VISITABLE_SN</String>
+          <String>SUCURSALES_Tuvo_Visita_SN</String>
+          <String>SUCURSALES_Tuvo_Visita_Programada_SN</String>
+          <String>_KEY_LINK_SINIESTRO</String>
+          <String>SINIESTROS_Canal_Denuncia</String>
+          <String>SINIESTROS_Provincia</String>
+          <String>SINIESTROS_Region</String>
+          <String>SINIESTROS_Id_Establecimiento</String>
+          <String>SINIESTRO_Establecimiento_No_Declarado</String>
+          <String>POLIZA_Provincia</String>
+          <String>POLIZA_Zona_Cualit_Desc</String>
+          <String>POLIZA_Tipo_Producto_Nombre</String>
+          <String>POLIZA_Clasificacion_SRT</String>
+          <String>POLIZA_Tipo_Poliza_SRT</String>
+          <String>TIPO_VISITA_Descripcion</String>
+          <String>_KEY_CATEGORIA_VISITA</String>
+          <String>VISITAS_Tipo_Categoria</String>
+          <String>CATEGORIA_VISITA_Manual_SN</String>
+          <String>PREVENCIONISTAS_POLIZAS_Tipo_Documento</String>
+          <String>PREVENCIONISTAS_POLIZAS_Tipo</String>
+          <String>PREVENCIONISTAS_POLIZAS_Cod_Usuario</String>
+          <String>PREVENCIONISTAS_POLIZAS_Email</String>
+          <String>PREVENCIONISTAS_POLIZAS_Documento_Empresa</String>
+          <String>PREVENCIONISTAS_POLIZAS_Tablet</String>
+          <String>PREVENCIONISTAS_POLIZAS_Supervisor</String>
+          <String>ITERACION_REPORTE_AMBA</String>
+          <String>ITERACION_REPORTE_INTERIOR</String>
+          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Tipo_Documento</String>
+          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Tipo</String>
+          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Cod_Usuario</String>
+          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Email</String>
+          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Documento_Empresa</String>
+          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Tablet</String>
+          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Supervisor</String>
+          <String>PREVENCIONISTAS_VISITAS_Tipo_Documento</String>
+          <String>PREVENCIONISTAS_VISITAS_Tipo</String>
+          <String>PREVENCIONISTAS_VISITAS_Cod_Usuario</String>
+          <String>PREVENCIONISTAS_VISITAS_Email</String>
+          <String>PREVENCIONISTAS_VISITAS_Documento_Empresa</String>
+          <String>PREVENCIONISTAS_VISITAS_Tablet</String>
+          <String>PREVENCIONISTAS_VISITAS_Supervisor</String>
+          <String>MOTIVO_VISITA_FALLIDA_Desc</String>
+          <String>VISITAS_Id_Establecimiento</String>
+          <String>VISITAS_Tipo</String>
+          <String>_KEY_PREVENCIONISTA_VISITA</String>
+          <String>VISITAS_Denun_Incum_SN</String>
+          <String>VISITAS_USR_Alta</String>
+          <String>VISITAS_USR_Mod</String>
+          <String>VISITAS_Manual</String>
+          <String>VISITAS_Prevencionista_Estudio</String>
+          <String>VISITAS_Constancia_Firmada</String>
+          <String>VISITAS_Visita_Efectiva_Fallida_PV</String>
+          <String>VISITAS_Visita_Tiempo_Vencida</String>
+          <String>VISITAS_Uso_Tablet</String>
+          <String>_KEY_LINK_VISITA</String>
+          <String>VISITAS_Doc_Entregada_SN</String>
+          <String>_KEY_SUCURSAL_OBJETIVO</String>
+          <String>OBJETIVO_VISITAS_Establecimiento</String>
+          <String>AUX_ESTADO_463_KEY_SUCURSALES</String>
+          <String>AUX_ESTADO_463_E</String>
+          <String>AUX_ESTADO_463_F</String>
+          <String>AUX_ESTADO_463_PV</String>
+          <String>$Field</String>
+          <String>$Table</String>
+          <String>$Rows</String>
+          <String>$Fields</String>
+          <String>$FieldNo</String>
+          <String>$Info</String>
+          <String>Referentes</String>
+          <String>_Color_Nombre</String>
+          <String>_Color_Principal1_1</String>
+          <String>_Color_Principal1_2</String>
+          <String>_Color_Principal1_3</String>
+          <String>_Color_Principal1_4</String>
+          <String>_Color_Principal1_5</String>
+          <String>_Color_Principal1_6</String>
+          <String>_Color_Principal1_7</String>
+          <String>_Color_Principal1_8</String>
+          <String>_Color_Principal1_9</String>
+          <String>_Color_Principal1_10</String>
+          <String>_Color_Principal2_1</String>
+          <String>_Color_Principal2_2</String>
+          <String>_Color_Principal2_3</String>
+          <String>_Color_Principal2_4</String>
+          <String>_Color_Principal2_5</String>
+          <String>_Color_Principal2_6</String>
+          <String>_Color_Principal2_7</String>
+          <String>_Color_Principal2_8</String>
+          <String>_Color_Principal2_9</String>
+          <String>_Color_Principal2_10</String>
+          <String>_Color_Secundario1_1</String>
+          <String>_Color_Secundario1_2</String>
+          <String>_Color_Secundario1_3</String>
+          <String>_Color_Secundario1_4</String>
+          <String>_Color_Secundario1_5</String>
+          <String>_Color_Secundario1_6</String>
+          <String>_Color_Secundario1_7</String>
+          <String>_Color_Secundario1_8</String>
+          <String>_Color_Secundario1_9</String>
+          <String>_Color_Secundario1_10</String>
+          <String>_Color_Secundario2_1</String>
+          <String>_Color_Secundario2_2</String>
+          <String>_Color_Secundario2_3</String>
+          <String>_Color_Secundario2_4</String>
+          <String>_Color_Secundario2_5</String>
+          <String>_Color_Secundario2_6</String>
+          <String>_Color_Secundario2_7</String>
+          <String>_Color_Secundario2_8</String>
+          <String>_Color_Secundario2_9</String>
+          <String>_Color_Secundario2_10</String>
+          <String>_Color_Complementario1_1</String>
+          <String>_Color_Complementario1_2</String>
+          <String>_Color_Complementario1_3</String>
+          <String>_Color_Complementario1_4</String>
+          <String>_Color_Complementario1_5</String>
+          <String>_Color_Complementario1_6</String>
+          <String>_Color_Complementario1_7</String>
+          <String>_Color_Complementario1_8</String>
+          <String>_Color_Complementario1_9</String>
+          <String>_Color_Complementario1_10</String>
+          <String>_Color_Complementario2_1</String>
+          <String>_Color_Complementario2_2</String>
+          <String>_Color_Complementario2_3</String>
+          <String>_Color_Complementario2_4</String>
+          <String>_Color_Complementario2_5</String>
+          <String>_Color_Complementario2_6</String>
+          <String>_Color_Complementario2_7</String>
+          <String>_Color_Complementario2_8</String>
+          <String>_Color_Complementario2_9</String>
+          <String>_Color_Complementario2_10</String>
+          <String>_Color_Complementario3_1</String>
+          <String>_Color_Complementario3_2</String>
+          <String>_Color_Complementario3_3</String>
+          <String>_Color_Complementario3_4</String>
+          <String>_Color_Complementario3_5</String>
+          <String>_Color_Complementario3_6</String>
+          <String>_Color_Complementario3_7</String>
+          <String>_Color_Complementario3_8</String>
+          <String>_Color_Complementario3_9</String>
+          <String>_Color_Complementario3_10</String>
+          <String>_Color_Complementario4_1</String>
+          <String>_Color_Complementario4_2</String>
+          <String>_Color_Complementario4_3</String>
+          <String>_Color_Complementario4_4</String>
+          <String>_Color_Complementario4_5</String>
+          <String>_Color_Complementario4_6</String>
+          <String>_Color_Complementario4_7</String>
+          <String>_Color_Complementario4_8</String>
+          <String>_Color_Complementario4_9</String>
+          <String>_Color_Complementario4_10</String>
+          <String>_Color_Negro_1</String>
+          <String>_Color_Negro_2</String>
+          <String>_Color_Negro_3</String>
+          <String>_Color_Negro_4</String>
+          <String>_Color_Negro_5</String>
+          <String>_Color_Negro_6</String>
+          <String>_Color_Negro_7</String>
+          <String>_Color_Negro_8</String>
+          <String>_Color_Negro_9</String>
+          <String>_Color_Negro_10</String>
+          <String>_Color_Gris1_1</String>
+          <String>_Color_Gris1_2</String>
+          <String>_Color_Gris1_3</String>
+          <String>_Color_Gris1_4</String>
+          <String>_Color_Gris1_5</String>
+          <String>_Color_Gris1_6</String>
+          <String>_Color_Gris1_7</String>
+          <String>_Color_Gris1_8</String>
+          <String>_Color_Gris1_9</String>
+          <String>_Color_Gris1_10</String>
+          <String>_Color_Gris2_1</String>
+          <String>_Color_Gris2_2</String>
+          <String>_Color_Gris2_3</String>
+          <String>_Color_Gris2_4</String>
+          <String>_Color_Gris2_5</String>
+          <String>_Color_Gris2_6</String>
+          <String>_Color_Gris2_7</String>
+          <String>_Color_Gris2_8</String>
+          <String>_Color_Gris2_9</String>
+          <String>_Color_Gris2_10</String>
+          <String>_Color_Grafico_Total</String>
+          <String>_Color_Grafico_Otros</String>
+          <String>_Color_Grafico_Titulo_Texto</String>
+          <String>_Color_Grafico_Titulo_Fondo</String>
+          <String>_Color_Obj_Titulo_Texto</String>
+          <String>_Color_Obj_Titulo_Fondo</String>
+          <String>_Color_ObjTexto</String>
+          <String>_Color_Borde</String>
+          <String>_Color_Contenedor</String>
+          <String>_Color_Boton_Activo</String>
+          <String>_Color_Boton_Desactivo</String>
+          <String>_Color_Grafico_Linea_1</String>
+          <String>_Color_Grafico_Linea_2</String>
+          <String>_Color_Grafico_Linea_3</String>
+          <String>_Color_Grafico_Linea_4</String>
+          <String>_Color_Portada_Titulo_Texto</String>
+          <String>Usuario</String>
+          <String>Jira</String>
+          <String>KEY_E_F_PV_B_PP</String>
+          <String>ESTADO_463</String>
+          <String>CALENDARIO_SINIESTROS_Periodo_Fiscal</String>
+          <String>Comment</String>
+          <String>Atributos_Visitas_Polizas</String>
+          <String>Indicadores_Visitas</String>
+          <String>Totalizadores</String>
+        </FieldNames>
+      </FieldTagData>
+      <FieldTagData>
         <Tag>$text</Tag>
         <FieldNames>
-          <String>Name</String>
-          <String>Comment</String>
+          <String>_KEY_LINK_CARTERA</String>
+          <String>_FLAG_Tipo_MovimientoCartera</String>
+          <String>_KEY_DNI_POLIZA</String>
+          <String>MOVCARTERA_Tipo_Poliza</String>
+          <String>AGRUPACION_INF_CARTERA_CONTRATOS</String>
+          <String>AGRUPACION_INF_CARTERA_CAPITAS</String>
+          <String>RangoCapitasAgrupado</String>
+          <String>_KEY_SUCURSALES</String>
+          <String>SUCURSALES_Id_Establecimiento</String>
+          <String>SUCURSALES_Email</String>
+          <String>SUCURSALES_Domicilio_Normal</String>
+          <String>SUCURSALES_Usuario</String>
+          <String>SUCURSALES_Represen_SN</String>
+          <String>SUCURSALES_Represen_Manual</String>
+          <String>SUCURSALES_Ejecutivo</String>
+          <String>SUCURSALES_RC_SN_RGRL_OKALTA</String>
+          <String>SUCURSALES_Clasif</String>
+          <String>SUCURSALES_Clasif_Manual</String>
+          <String>SUCURSALES_SRT_Aceptado</String>
+          <String>SUCURSALES_Usr_Modif</String>
+          <String>SUCURSALES_Visitable_SN</String>
+          <String>SUCURSALES_Provincia</String>
+          <String>SUCURSALES_Region</String>
+          <String>SUCURSALES_Tipo_Establecimiento</String>
+          <String>_FLAG_CASAS_ESTABLECIMIENTOS_OBRAS</String>
+          <String>SUCURSALES_Tipo_Actividad</String>
+          <String>SUCURSALES_Tipo_Obra</String>
+          <String>SUCURSALES_Prog_Seg_SN</String>
+          <String>SUCURSALES_Clasificacion_SRT</String>
+          <String>IO_VISITABLE_SN</String>
+          <String>SUCURSALES_Tuvo_Visita_SN</String>
+          <String>SUCURSALES_Tuvo_Visita_Programada_SN</String>
+          <String>SUCURSALES_Localidad</String>
+          <String>_KEY_LINK_SINIESTRO</String>
+          <String>SINIESTROS_Canal_Denuncia</String>
+          <String>SINIESTROS_Estado_Acept</String>
+          <String>SINIESTROS_Zona_Afectada</String>
+          <String>SINIESTROS_Provincia</String>
+          <String>SINIESTROS_Region</String>
+          <String>SINIESTROS_Tipo_Desc</String>
+          <String>SINIESTROS_Grupo_Economico</String>
+          <String>SINIESTROS_Id_Establecimiento</String>
+          <String>SINIESTRO_Establecimiento_No_Declarado</String>
+          <String>POLIZA_Grupo_Economico</String>
+          <String>POLIZA_Provincia</String>
+          <String>POLIZA_Zona_Cualit_Desc</String>
+          <String>POLIZA_Tipo_Producto_Nombre</String>
+          <String>POLIZA_Clasificacion_SRT</String>
+          <String>MOVCARTERA_Razon_Social</String>
+          <String>POLIZA_Tipo_Poliza_SRT</String>
+          <String>TIPO_VISITA_Descripcion</String>
+          <String>_KEY_CATEGORIA_VISITA</String>
+          <String>VISITAS_Tipo_Categoria</String>
+          <String>CATEGORIA_VISITA_Descripcion</String>
+          <String>CATEGORIA_VISITA_Manual_SN</String>
+          <String>PREVENCIONISTAS_POLIZAS_Tipo_Documento</String>
+          <String>PREVENCIONISTAS_POLIZAS_Tipo</String>
+          <String>PREVENCIONISTAS_POLIZAS_Cod_Usuario</String>
+          <String>PREVENCIONISTAS_POLIZAS_Email</String>
+          <String>PREVENCIONISTAS_POLIZAS_Documento_Empresa</String>
+          <String>PREVENCIONISTAS_POLIZAS_Tablet</String>
+          <String>PREVENCIONISTAS_POLIZAS_Nombre</String>
+          <String>PREVENCIONISTAS_POLIZAS_Supervisor</String>
+          <String>ITERACION_REPORTE_AMBA</String>
+          <String>ITERACION_REPORTE_INTERIOR</String>
+          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Tipo_Documento</String>
+          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Tipo</String>
+          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Cod_Usuario</String>
+          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Email</String>
+          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Documento_Empresa</String>
+          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Tablet</String>
+          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Nombre</String>
+          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Supervisor</String>
+          <String>PREVENCIONISTAS_VISITAS_Tipo_Documento</String>
+          <String>PREVENCIONISTAS_VISITAS_Tipo</String>
+          <String>PREVENCIONISTAS_VISITAS_Cod_Usuario</String>
+          <String>PREVENCIONISTAS_VISITAS_Email</String>
+          <String>PREVENCIONISTAS_VISITAS_Documento_Empresa</String>
+          <String>PREVENCIONISTAS_VISITAS_Tablet</String>
+          <String>PREVENCIONISTAS_VISITAS_Nombre</String>
+          <String>PREVENCIONISTAS_VISITAS_Supervisor</String>
+          <String>MOTIVO_VISITA_FALLIDA_Descripcion_Ext</String>
+          <String>MOTIVO_VISITA_FALLIDA_Desc</String>
+          <String>VISITAS_Id_Establecimiento</String>
+          <String>VISITAS_Tipo</String>
+          <String>_KEY_PREVENCIONISTA_VISITA</String>
+          <String>VISITAS_Denun_Incum_SN</String>
+          <String>VISITAS_USR_Alta</String>
+          <String>VISITAS_USR_Mod</String>
+          <String>VISITAS_Manual</String>
+          <String>VISITAS_Prevencionista_Estudio</String>
+          <String>VISITAS_Constancia_Firmada</String>
+          <String>VISITAS_Visita_Efectiva_Fallida_PV</String>
+          <String>VISITAS_Visita_Tiempo_Vencida</String>
+          <String>VISITAS_Uso_Tablet</String>
+          <String>VISITAS_Geolocalizacion_SN</String>
+          <String>_KEY_LINK_VISITA</String>
+          <String>VISITAS_Doc_Entregada_SN</String>
+          <String>_KEY_SUCURSAL_OBJETIVO</String>
+          <String>OBJETIVO_VISITAS_Establecimiento</String>
+          <String>AUX_ESTADO_463_KEY_SUCURSALES</String>
+          <String>AUX_ESTADO_463_E</String>
+          <String>AUX_ESTADO_463_F</String>
+          <String>AUX_ESTADO_463_PV</String>
           <String>$Field</String>
           <String>$Table</String>
           <String>$Rows</String>
@@ -2130,116 +2466,14 @@
           <String>Usuario</String>
           <String>Jira</String>
           <String>Observacion</String>
-          <String>_KEY_LINK_CARTERA</String>
-          <String>_FLAG_Tipo_MovimientoCartera</String>
-          <String>_KEY_DNI_POLIZA</String>
-          <String>MOVCARTERA_Tipo_Poliza</String>
-          <String>AGRUPACION_INF_CARTERA_CONTRATOS</String>
-          <String>AGRUPACION_INF_CARTERA_CAPITAS</String>
-          <String>RangoCapitasAgrupado</String>
-          <String>_KEY_SUCURSALES</String>
-          <String>SUCURSALES_Id_Establecimiento</String>
-          <String>SUCURSALES_Email</String>
-          <String>SUCURSALES_Domicilio_Normal</String>
-          <String>SUCURSALES_Usuario</String>
-          <String>SUCURSALES_Represen_SN</String>
-          <String>SUCURSALES_Represen_Manual</String>
-          <String>SUCURSALES_Ejecutivo</String>
-          <String>SUCURSALES_RC_SN_RGRL_OKALTA</String>
-          <String>SUCURSALES_Clasif</String>
-          <String>SUCURSALES_Clasif_Manual</String>
-          <String>SUCURSALES_SRT_Aceptado</String>
-          <String>SUCURSALES_Usr_Modif</String>
-          <String>SUCURSALES_Visitable_SN</String>
-          <String>SUCURSALES_Provincia</String>
-          <String>SUCURSALES_Region</String>
-          <String>SUCURSALES_Tipo_Establecimiento</String>
-          <String>_FLAG_CASAS_ESTABLECIMIENTOS_OBRAS</String>
-          <String>SUCURSALES_Tipo_Actividad</String>
-          <String>SUCURSALES_Tipo_Obra</String>
-          <String>SUCURSALES_Prog_Seg_SN</String>
-          <String>SUCURSALES_Clasificacion_SRT</String>
-          <String>IO_VISITABLE_SN</String>
-          <String>SUCURSALES_Tuvo_Visita_SN</String>
-          <String>SUCURSALES_Tuvo_Visita_Programada_SN</String>
-          <String>SUCURSALES_Localidad</String>
-          <String>_KEY_LINK_SINIESTRO</String>
-          <String>SINIESTROS_Canal_Denuncia</String>
-          <String>SINIESTROS_Estado_Acept</String>
-          <String>SINIESTROS_Zona_Afectada</String>
-          <String>SINIESTROS_Provincia</String>
-          <String>SINIESTROS_Region</String>
-          <String>SINIESTROS_Tipo_Desc</String>
-          <String>SINIESTROS_Grupo_Economico</String>
-          <String>SINIESTROS_Id_Establecimiento</String>
-          <String>SINIESTRO_Establecimiento_No_Declarado</String>
-          <String>POLIZA_Grupo_Economico</String>
-          <String>POLIZA_Provincia</String>
-          <String>POLIZA_Zona_Cualit_Desc</String>
-          <String>POLIZA_Tipo_Producto_Nombre</String>
-          <String>POLIZA_Clasificacion_SRT</String>
-          <String>MOVCARTERA_Razon_Social</String>
-          <String>POLIZA_Tipo_Poliza_SRT</String>
-          <String>TIPO_VISITA_Descripcion</String>
-          <String>_KEY_CATEGORIA_VISITA</String>
-          <String>VISITAS_Tipo_Categoria</String>
-          <String>CATEGORIA_VISITA_Descripcion</String>
-          <String>CATEGORIA_VISITA_Manual_SN</String>
-          <String>PREVENCIONISTAS_POLIZAS_Tipo_Documento</String>
-          <String>PREVENCIONISTAS_POLIZAS_Tipo</String>
-          <String>PREVENCIONISTAS_POLIZAS_Cod_Usuario</String>
-          <String>PREVENCIONISTAS_POLIZAS_Email</String>
-          <String>PREVENCIONISTAS_POLIZAS_Documento_Empresa</String>
-          <String>PREVENCIONISTAS_POLIZAS_Tablet</String>
-          <String>PREVENCIONISTAS_POLIZAS_Nombre</String>
-          <String>PREVENCIONISTAS_POLIZAS_Supervisor</String>
-          <String>ITERACION_REPORTE_AMBA</String>
-          <String>ITERACION_REPORTE_INTERIOR</String>
-          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Tipo_Documento</String>
-          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Tipo</String>
-          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Cod_Usuario</String>
-          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Email</String>
-          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Documento_Empresa</String>
-          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Tablet</String>
-          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Nombre</String>
-          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Supervisor</String>
-          <String>PREVENCIONISTAS_VISITAS_Tipo_Documento</String>
-          <String>PREVENCIONISTAS_VISITAS_Tipo</String>
-          <String>PREVENCIONISTAS_VISITAS_Cod_Usuario</String>
-          <String>PREVENCIONISTAS_VISITAS_Email</String>
-          <String>PREVENCIONISTAS_VISITAS_Documento_Empresa</String>
-          <String>PREVENCIONISTAS_VISITAS_Tablet</String>
-          <String>PREVENCIONISTAS_VISITAS_Nombre</String>
-          <String>PREVENCIONISTAS_VISITAS_Supervisor</String>
-          <String>MOTIVO_VISITA_FALLIDA_Descripcion_Ext</String>
-          <String>MOTIVO_VISITA_FALLIDA_Desc</String>
-          <String>VISITAS_Id_Establecimiento</String>
-          <String>VISITAS_Tipo</String>
-          <String>_KEY_PREVENCIONISTA_VISITA</String>
-          <String>VISITAS_Denun_Incum_SN</String>
-          <String>VISITAS_USR_Alta</String>
-          <String>VISITAS_USR_Mod</String>
-          <String>VISITAS_Manual</String>
-          <String>VISITAS_Prevencionista_Estudio</String>
-          <String>VISITAS_Constancia_Firmada</String>
-          <String>VISITAS_Visita_Efectiva_Fallida_PV</String>
-          <String>VISITAS_Visita_Tiempo_Vencida</String>
-          <String>VISITAS_Uso_Tablet</String>
-          <String>VISITAS_Geolocalizacion_SN</String>
-          <String>_KEY_LINK_VISITA</String>
-          <String>VISITAS_Doc_Entregada_SN</String>
-          <String>_KEY_SUCURSAL_OBJETIVO</String>
-          <String>OBJETIVO_VISITAS_Establecimiento</String>
-          <String>AUX_ESTADO_463_KEY_SUCURSALES</String>
-          <String>AUX_ESTADO_463_E</String>
-          <String>AUX_ESTADO_463_F</String>
-          <String>AUX_ESTADO_463_PV</String>
           <String>KEY_E_F_PV_B_PP</String>
           <String>ESTADO_463</String>
           <String>CALENDARIO_SINIESTROS_Periodo_Fiscal</String>
           <String>IndicadoresGraficosContratos</String>
           <String>IndicadoresGraficosObras</String>
           <String>IndicadoresGraficosSiniestros</String>
+          <String>Name</String>
+          <String>Comment</String>
           <String>Atributos_Visitas_Visitas</String>
           <String>Atributos_Visitas_Polizas</String>
           <String>Indicadores_Visitas</String>
@@ -2251,275 +2485,8 @@
         </FieldNames>
       </FieldTagData>
       <FieldTagData>
-        <Tag>$ascii</Tag>
-        <FieldNames>
-          <String>Comment</String>
-          <String>$Field</String>
-          <String>$Table</String>
-          <String>$Rows</String>
-          <String>$Fields</String>
-          <String>$FieldNo</String>
-          <String>$Info</String>
-          <String>Referentes</String>
-          <String>_Color_Nombre</String>
-          <String>_Color_Principal1_1</String>
-          <String>_Color_Principal1_2</String>
-          <String>_Color_Principal1_3</String>
-          <String>_Color_Principal1_4</String>
-          <String>_Color_Principal1_5</String>
-          <String>_Color_Principal1_6</String>
-          <String>_Color_Principal1_7</String>
-          <String>_Color_Principal1_8</String>
-          <String>_Color_Principal1_9</String>
-          <String>_Color_Principal1_10</String>
-          <String>_Color_Principal2_1</String>
-          <String>_Color_Principal2_2</String>
-          <String>_Color_Principal2_3</String>
-          <String>_Color_Principal2_4</String>
-          <String>_Color_Principal2_5</String>
-          <String>_Color_Principal2_6</String>
-          <String>_Color_Principal2_7</String>
-          <String>_Color_Principal2_8</String>
-          <String>_Color_Principal2_9</String>
-          <String>_Color_Principal2_10</String>
-          <String>_Color_Secundario1_1</String>
-          <String>_Color_Secundario1_2</String>
-          <String>_Color_Secundario1_3</String>
-          <String>_Color_Secundario1_4</String>
-          <String>_Color_Secundario1_5</String>
-          <String>_Color_Secundario1_6</String>
-          <String>_Color_Secundario1_7</String>
-          <String>_Color_Secundario1_8</String>
-          <String>_Color_Secundario1_9</String>
-          <String>_Color_Secundario1_10</String>
-          <String>_Color_Secundario2_1</String>
-          <String>_Color_Secundario2_2</String>
-          <String>_Color_Secundario2_3</String>
-          <String>_Color_Secundario2_4</String>
-          <String>_Color_Secundario2_5</String>
-          <String>_Color_Secundario2_6</String>
-          <String>_Color_Secundario2_7</String>
-          <String>_Color_Secundario2_8</String>
-          <String>_Color_Secundario2_9</String>
-          <String>_Color_Secundario2_10</String>
-          <String>_Color_Complementario1_1</String>
-          <String>_Color_Complementario1_2</String>
-          <String>_Color_Complementario1_3</String>
-          <String>_Color_Complementario1_4</String>
-          <String>_Color_Complementario1_5</String>
-          <String>_Color_Complementario1_6</String>
-          <String>_Color_Complementario1_7</String>
-          <String>_Color_Complementario1_8</String>
-          <String>_Color_Complementario1_9</String>
-          <String>_Color_Complementario1_10</String>
-          <String>_Color_Complementario2_1</String>
-          <String>_Color_Complementario2_2</String>
-          <String>_Color_Complementario2_3</String>
-          <String>_Color_Complementario2_4</String>
-          <String>_Color_Complementario2_5</String>
-          <String>_Color_Complementario2_6</String>
-          <String>_Color_Complementario2_7</String>
-          <String>_Color_Complementario2_8</String>
-          <String>_Color_Complementario2_9</String>
-          <String>_Color_Complementario2_10</String>
-          <String>_Color_Complementario3_1</String>
-          <String>_Color_Complementario3_2</String>
-          <String>_Color_Complementario3_3</String>
-          <String>_Color_Complementario3_4</String>
-          <String>_Color_Complementario3_5</String>
-          <String>_Color_Complementario3_6</String>
-          <String>_Color_Complementario3_7</String>
-          <String>_Color_Complementario3_8</String>
-          <String>_Color_Complementario3_9</String>
-          <String>_Color_Complementario3_10</String>
-          <String>_Color_Complementario4_1</String>
-          <String>_Color_Complementario4_2</String>
-          <String>_Color_Complementario4_3</String>
-          <String>_Color_Complementario4_4</String>
-          <String>_Color_Complementario4_5</String>
-          <String>_Color_Complementario4_6</String>
-          <String>_Color_Complementario4_7</String>
-          <String>_Color_Complementario4_8</String>
-          <String>_Color_Complementario4_9</String>
-          <String>_Color_Complementario4_10</String>
-          <String>_Color_Negro_1</String>
-          <String>_Color_Negro_2</String>
-          <String>_Color_Negro_3</String>
-          <String>_Color_Negro_4</String>
-          <String>_Color_Negro_5</String>
-          <String>_Color_Negro_6</String>
-          <String>_Color_Negro_7</String>
-          <String>_Color_Negro_8</String>
-          <String>_Color_Negro_9</String>
-          <String>_Color_Negro_10</String>
-          <String>_Color_Gris1_1</String>
-          <String>_Color_Gris1_2</String>
-          <String>_Color_Gris1_3</String>
-          <String>_Color_Gris1_4</String>
-          <String>_Color_Gris1_5</String>
-          <String>_Color_Gris1_6</String>
-          <String>_Color_Gris1_7</String>
-          <String>_Color_Gris1_8</String>
-          <String>_Color_Gris1_9</String>
-          <String>_Color_Gris1_10</String>
-          <String>_Color_Gris2_1</String>
-          <String>_Color_Gris2_2</String>
-          <String>_Color_Gris2_3</String>
-          <String>_Color_Gris2_4</String>
-          <String>_Color_Gris2_5</String>
-          <String>_Color_Gris2_6</String>
-          <String>_Color_Gris2_7</String>
-          <String>_Color_Gris2_8</String>
-          <String>_Color_Gris2_9</String>
-          <String>_Color_Gris2_10</String>
-          <String>_Color_Grafico_Total</String>
-          <String>_Color_Grafico_Otros</String>
-          <String>_Color_Grafico_Titulo_Texto</String>
-          <String>_Color_Grafico_Titulo_Fondo</String>
-          <String>_Color_Obj_Titulo_Texto</String>
-          <String>_Color_Obj_Titulo_Fondo</String>
-          <String>_Color_ObjTexto</String>
-          <String>_Color_Borde</String>
-          <String>_Color_Contenedor</String>
-          <String>_Color_Boton_Activo</String>
-          <String>_Color_Boton_Desactivo</String>
-          <String>_Color_Grafico_Linea_1</String>
-          <String>_Color_Grafico_Linea_2</String>
-          <String>_Color_Grafico_Linea_3</String>
-          <String>_Color_Grafico_Linea_4</String>
-          <String>_Color_Portada_Titulo_Texto</String>
-          <String>Usuario</String>
-          <String>Jira</String>
-          <String>_KEY_LINK_CARTERA</String>
-          <String>_FLAG_Tipo_MovimientoCartera</String>
-          <String>_KEY_DNI_POLIZA</String>
-          <String>MOVCARTERA_Tipo_Poliza</String>
-          <String>AGRUPACION_INF_CARTERA_CONTRATOS</String>
-          <String>RangoCapitasAgrupado</String>
-          <String>_KEY_SUCURSALES</String>
-          <String>SUCURSALES_Id_Establecimiento</String>
-          <String>SUCURSALES_Email</String>
-          <String>SUCURSALES_Domicilio_Normal</String>
-          <String>SUCURSALES_Usuario</String>
-          <String>SUCURSALES_Represen_SN</String>
-          <String>SUCURSALES_Represen_Manual</String>
-          <String>SUCURSALES_Ejecutivo</String>
-          <String>SUCURSALES_RC_SN_RGRL_OKALTA</String>
-          <String>SUCURSALES_Clasif</String>
-          <String>SUCURSALES_Clasif_Manual</String>
-          <String>SUCURSALES_SRT_Aceptado</String>
-          <String>SUCURSALES_Usr_Modif</String>
-          <String>SUCURSALES_Visitable_SN</String>
-          <String>SUCURSALES_Provincia</String>
-          <String>SUCURSALES_Region</String>
-          <String>_FLAG_CASAS_ESTABLECIMIENTOS_OBRAS</String>
-          <String>SUCURSALES_Prog_Seg_SN</String>
-          <String>IO_VISITABLE_SN</String>
-          <String>SUCURSALES_Tuvo_Visita_SN</String>
-          <String>SUCURSALES_Tuvo_Visita_Programada_SN</String>
-          <String>_KEY_LINK_SINIESTRO</String>
-          <String>SINIESTROS_Canal_Denuncia</String>
-          <String>SINIESTROS_Provincia</String>
-          <String>SINIESTROS_Region</String>
-          <String>SINIESTROS_Id_Establecimiento</String>
-          <String>SINIESTRO_Establecimiento_No_Declarado</String>
-          <String>POLIZA_Provincia</String>
-          <String>POLIZA_Zona_Cualit_Desc</String>
-          <String>POLIZA_Tipo_Producto_Nombre</String>
-          <String>POLIZA_Clasificacion_SRT</String>
-          <String>POLIZA_Tipo_Poliza_SRT</String>
-          <String>TIPO_VISITA_Descripcion</String>
-          <String>_KEY_CATEGORIA_VISITA</String>
-          <String>VISITAS_Tipo_Categoria</String>
-          <String>CATEGORIA_VISITA_Manual_SN</String>
-          <String>PREVENCIONISTAS_POLIZAS_Tipo_Documento</String>
-          <String>PREVENCIONISTAS_POLIZAS_Tipo</String>
-          <String>PREVENCIONISTAS_POLIZAS_Cod_Usuario</String>
-          <String>PREVENCIONISTAS_POLIZAS_Email</String>
-          <String>PREVENCIONISTAS_POLIZAS_Documento_Empresa</String>
-          <String>PREVENCIONISTAS_POLIZAS_Tablet</String>
-          <String>PREVENCIONISTAS_POLIZAS_Supervisor</String>
-          <String>ITERACION_REPORTE_AMBA</String>
-          <String>ITERACION_REPORTE_INTERIOR</String>
-          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Tipo_Documento</String>
-          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Tipo</String>
-          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Cod_Usuario</String>
-          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Email</String>
-          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Documento_Empresa</String>
-          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Tablet</String>
-          <String>PREVENCIONISTAS_ESTABLECIMIENTOS_Supervisor</String>
-          <String>PREVENCIONISTAS_VISITAS_Tipo_Documento</String>
-          <String>PREVENCIONISTAS_VISITAS_Tipo</String>
-          <String>PREVENCIONISTAS_VISITAS_Cod_Usuario</String>
-          <String>PREVENCIONISTAS_VISITAS_Email</String>
-          <String>PREVENCIONISTAS_VISITAS_Documento_Empresa</String>
-          <String>PREVENCIONISTAS_VISITAS_Tablet</String>
-          <String>PREVENCIONISTAS_VISITAS_Supervisor</String>
-          <String>MOTIVO_VISITA_FALLIDA_Desc</String>
-          <String>VISITAS_Id_Establecimiento</String>
-          <String>VISITAS_Tipo</String>
-          <String>_KEY_PREVENCIONISTA_VISITA</String>
-          <String>VISITAS_Denun_Incum_SN</String>
-          <String>VISITAS_USR_Alta</String>
-          <String>VISITAS_USR_Mod</String>
-          <String>VISITAS_Manual</String>
-          <String>VISITAS_Prevencionista_Estudio</String>
-          <String>VISITAS_Constancia_Firmada</String>
-          <String>VISITAS_Visita_Efectiva_Fallida_PV</String>
-          <String>VISITAS_Visita_Tiempo_Vencida</String>
-          <String>VISITAS_Uso_Tablet</String>
-          <String>_KEY_LINK_VISITA</String>
-          <String>VISITAS_Doc_Entregada_SN</String>
-          <String>_KEY_SUCURSAL_OBJETIVO</String>
-          <String>OBJETIVO_VISITAS_Establecimiento</String>
-          <String>AUX_ESTADO_463_KEY_SUCURSALES</String>
-          <String>AUX_ESTADO_463_E</String>
-          <String>AUX_ESTADO_463_F</String>
-          <String>AUX_ESTADO_463_PV</String>
-          <String>KEY_E_F_PV_B_PP</String>
-          <String>ESTADO_463</String>
-          <String>CALENDARIO_SINIESTROS_Periodo_Fiscal</String>
-          <String>Atributos_Visitas_Polizas</String>
-          <String>Indicadores_Visitas</String>
-          <String>Totalizadores</String>
-        </FieldNames>
-      </FieldTagData>
-      <FieldTagData>
-        <Tag>$hidden</Tag>
-        <FieldNames>
-          <String>$Field</String>
-          <String>$Table</String>
-          <String>$Rows</String>
-          <String>$Fields</String>
-          <String>$FieldNo</String>
-          <String>$Info</String>
-        </FieldNames>
-      </FieldTagData>
-      <FieldTagData>
-        <Tag>$system</Tag>
-        <FieldNames>
-          <String>$Field</String>
-          <String>$Table</String>
-          <String>$Rows</String>
-          <String>$Fields</String>
-          <String>$FieldNo</String>
-          <String>$Info</String>
-        </FieldNames>
-      </FieldTagData>
-      <FieldTagData>
         <Tag>$numeric</Tag>
         <FieldNames>
-          <String>Ejemplo</String>
-          <String>Fecha</String>
-          <String>_KEY_POLIZA_MOVCARTERA</String>
-          <String>_KEY_PERIODO</String>
-          <String>MOVCARTERA_Periodo</String>
-          <String>MOVCARTERA_Poliza</String>
-          <String>_KEY_FECHA_MOV</String>
-          <String>MOVCARTERA_Capitas</String>
-          <String>_FLAG_Ultima_Emision</String>
-          <String>MOVCARTERA_Fh_Inicio_Servicios</String>
-          <String>MOVCARTERA_Fh_Baja</String>
           <String>MOVCARTERA_Fh_Baja_Periodo</String>
           <String>MOVCARTERA_Fh_Carga</String>
           <String>MOVCARTERA_PrimaTecnica</String>
@@ -2536,6 +2503,7 @@
           <String>SUCURSALES_Consecutivo</String>
           <String>SUCURSALES_Cod</String>
           <String>SUCURSALES_NroCasa</String>
+          <String>SUCURSALES_NroEscalera</String>
           <String>SUCURSALES_NroAfiliados</String>
           <String>SUCURSALES_CIIU</String>
           <String>SUCURSALES_CIIU_Asociado</String>
@@ -2655,6 +2623,7 @@
           <String>CALENDARIO_VISITAS_MesFiscal_Nombre</String>
           <String>CALENDARIO_VISITAS_Año</String>
           <String>CALENDARIO_VISITAS_Mes</String>
+          <String>_KEY_FECHA_MOV</String>
           <String>CALENDARIO_VIGENCIA_Año</String>
           <String>CALENDARIO_VIGENCIA_Mes</String>
           <String>CALENDARIO_VIGENCIA_Periodo</String>
@@ -2670,9 +2639,16 @@
           <String>CALENDARIO_VIGENCIA_Q</String>
           <String>CALENDARIO_PROGRAMACION_VISITAS_Año</String>
           <String>CALENDARIO_PROGRAMACION_VISITAS_Mes</String>
-          <String>$Rows</String>
-          <String>$Fields</String>
-          <String>$FieldNo</String>
+          <String>Ejemplo</String>
+          <String>Fecha</String>
+          <String>_KEY_POLIZA_MOVCARTERA</String>
+          <String>_KEY_PERIODO</String>
+          <String>MOVCARTERA_Periodo</String>
+          <String>MOVCARTERA_Poliza</String>
+          <String>MOVCARTERA_Capitas</String>
+          <String>_FLAG_Ultima_Emision</String>
+          <String>MOVCARTERA_Fh_Inicio_Servicios</String>
+          <String>MOVCARTERA_Fh_Baja</String>
           <String>_KEY_PERIODO_LINK</String>
           <String>_KEY_YEAR_LINK</String>
           <String>_KEY_FECHA_LINK</String>
@@ -2730,21 +2706,14 @@
           <String>CALENDARIO_PROGRAMACION_VISITAS_MesFiscal</String>
           <String>CALENDARIO_PROGRAMACION_VISITAS_AñoFiscal</String>
           <String>CALENDARIO_PROGRAMACION_VISITAS_CONTINUO</String>
+          <String>$Rows</String>
+          <String>$Fields</String>
+          <String>$FieldNo</String>
         </FieldNames>
       </FieldTagData>
       <FieldTagData>
         <Tag>$integer</Tag>
         <FieldNames>
-          <String>Fecha</String>
-          <String>_KEY_POLIZA_MOVCARTERA</String>
-          <String>_KEY_PERIODO</String>
-          <String>MOVCARTERA_Periodo</String>
-          <String>MOVCARTERA_Poliza</String>
-          <String>_KEY_FECHA_MOV</String>
-          <String>MOVCARTERA_Capitas</String>
-          <String>_FLAG_Ultima_Emision</String>
-          <String>MOVCARTERA_Fh_Inicio_Servicios</String>
-          <String>MOVCARTERA_Fh_Baja</String>
           <String>MOVCARTERA_Fh_Baja_Periodo</String>
           <String>MOVCARTERA_Fh_Carga</String>
           <String>_FLAG_ALTA</String>
@@ -2760,6 +2729,7 @@
           <String>SUCURSALES_Consecutivo</String>
           <String>SUCURSALES_Cod</String>
           <String>SUCURSALES_NroCasa</String>
+          <String>SUCURSALES_NroEscalera</String>
           <String>SUCURSALES_NroAfiliados</String>
           <String>SUCURSALES_CIIU</String>
           <String>SUCURSALES_CIIU_Asociado</String>
@@ -2866,6 +2836,7 @@
           <String>CALENDARIO_VISITAS_MesFiscal_Nombre</String>
           <String>CALENDARIO_VISITAS_Año</String>
           <String>CALENDARIO_VISITAS_Mes</String>
+          <String>_KEY_FECHA_MOV</String>
           <String>CALENDARIO_VIGENCIA_Año</String>
           <String>CALENDARIO_VIGENCIA_Mes</String>
           <String>CALENDARIO_VIGENCIA_Periodo</String>
@@ -2880,9 +2851,15 @@
           <String>CALENDARIO_VIGENCIA_Q</String>
           <String>CALENDARIO_PROGRAMACION_VISITAS_Año</String>
           <String>CALENDARIO_PROGRAMACION_VISITAS_Mes</String>
-          <String>$Rows</String>
-          <String>$Fields</String>
-          <String>$FieldNo</String>
+          <String>Fecha</String>
+          <String>_KEY_POLIZA_MOVCARTERA</String>
+          <String>_KEY_PERIODO</String>
+          <String>MOVCARTERA_Periodo</String>
+          <String>MOVCARTERA_Poliza</String>
+          <String>MOVCARTERA_Capitas</String>
+          <String>_FLAG_Ultima_Emision</String>
+          <String>MOVCARTERA_Fh_Inicio_Servicios</String>
+          <String>MOVCARTERA_Fh_Baja</String>
           <String>VISITAS_Fecha_Ultima_Visita</String>
           <String>_KEY_PERIODO_LINK</String>
           <String>_KEY_YEAR_LINK</String>
@@ -2939,6 +2916,9 @@
           <String>CALENDARIO_PROGRAMACION_VISITAS_MesFiscal</String>
           <String>CALENDARIO_PROGRAMACION_VISITAS_AñoFiscal</String>
           <String>CALENDARIO_PROGRAMACION_VISITAS_CONTINUO</String>
+          <String>$Rows</String>
+          <String>$Fields</String>
+          <String>$FieldNo</String>
         </FieldNames>
       </FieldTagData>
       <FieldTagData>
@@ -2947,11 +2927,9 @@
           <String>MOVCARTERA_Fh_Baja_Periodo</String>
           <String>MOVCARTERA_Fh_Carga</String>
           <String>SUCURSALES_Fecha_Alta</String>
-          <String>SUCURSALES_Fecha_Baja</String>
           <String>SUCURSALES_Fecha_Carga</String>
           <String>SUCURSALES_Fecha_Modif</String>
           <String>IO_PERIODO_FEINICIO</String>
-          <String>IO_PERIODO_FEFIN</String>
           <String>IO_PERIODO_IO_FESUSPENSION</String>
           <String>IO_PERIODO_FEREINICIO</String>
           <String>_KEY_CALENDARIO_SINIESTROS</String>
@@ -2970,7 +2948,6 @@
           <String>VISITAS_Recepcion_Informe</String>
           <String>VISITAS_Fecha_Alta_Informe</String>
           <String>OBJETIVO_VISITAS_Vencimiento</String>
-          <String>OBJETIVO_VISITAS_Ultima_Fecha_Visita</String>
           <String>OBJETIVO_VISITAS_Fecha_Baja_Est_Pol</String>
           <String>_KEY_FECHA_MOV</String>
           <String>CALENDARIO_VIGENCIA_Periodo</String>
@@ -3003,11 +2980,9 @@
           <String>MOVCARTERA_Fh_Baja_Periodo</String>
           <String>MOVCARTERA_Fh_Carga</String>
           <String>SUCURSALES_Fecha_Alta</String>
-          <String>SUCURSALES_Fecha_Baja</String>
           <String>SUCURSALES_Fecha_Carga</String>
           <String>SUCURSALES_Fecha_Modif</String>
           <String>IO_PERIODO_FEINICIO</String>
-          <String>IO_PERIODO_FEFIN</String>
           <String>IO_PERIODO_IO_FESUSPENSION</String>
           <String>IO_PERIODO_FEREINICIO</String>
           <String>_KEY_CALENDARIO_SINIESTROS</String>
@@ -3019,7 +2994,6 @@
           <String>VISITAS_Recepcion_Informe</String>
           <String>VISITAS_Fecha_Alta_Informe</String>
           <String>OBJETIVO_VISITAS_Vencimiento</String>
-          <String>OBJETIVO_VISITAS_Ultima_Fecha_Visita</String>
           <String>OBJETIVO_VISITAS_Fecha_Baja_Est_Pol</String>
           <String>_KEY_FECHA_MOV</String>
           <String>CALENDARIO_VIGENCIA_Periodo</String>
@@ -3044,10 +3018,30 @@
         </FieldNames>
       </FieldTagData>
       <FieldTagData>
-        <Tag>$key</Tag>
+        <Tag>$hidden</Tag>
         <FieldNames>
           <String>$Field</String>
           <String>$Table</String>
+          <String>$Rows</String>
+          <String>$Fields</String>
+          <String>$FieldNo</String>
+          <String>$Info</String>
+        </FieldNames>
+      </FieldTagData>
+      <FieldTagData>
+        <Tag>$system</Tag>
+        <FieldNames>
+          <String>$Field</String>
+          <String>$Table</String>
+          <String>$Rows</String>
+          <String>$Fields</String>
+          <String>$FieldNo</String>
+          <String>$Info</String>
+        </FieldNames>
+      </FieldTagData>
+      <FieldTagData>
+        <Tag>$key</Tag>
+        <FieldNames>
           <String>_KEY_LINK_CARTERA</String>
           <String>_KEY_FECHA_MOV</String>
           <String>_KEY_PREVENCIONISTA_POLIZA</String>
@@ -3066,6 +3060,8 @@
           <String>_KEY_LINK_VISITA</String>
           <String>_KEY_SUCURSAL_OBJETIVO</String>
           <String>_KEY_FECHA_LINK</String>
+          <String>$Field</String>
+          <String>$Table</String>
         </FieldNames>
       </FieldTagData>
     </ScriptBased>

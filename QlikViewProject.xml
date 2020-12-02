@@ -1,4 +1,4 @@
-﻿<!-- Last project change: 2020-11-16 06:17:24 (2020-11-16 09:17:24) -->
+﻿<!-- Last project change: 2020-12-01 13:30:55 (2020-12-01 16:30:55) -->
 <PrjQlikViewProject>
   <GLOBAL>
     <AllPropertiesFileName>AllProperties.xml</AllPropertiesFileName>
@@ -2256,46 +2256,6 @@
             <Height>100</Height>
           </Rect>
           <MinimizedRect></MinimizedRect>
-          <ShowMode>1</ShowMode>
-          <ZedLevel>0</ZedLevel>
-        </PrjFrameParentDef>
-      </ChildObjects>
-    </PrjSheetProperties>
-    <PrjSheetProperties>
-      <SheetId>Document\SH51</SheetId>
-      <IsActive>false</IsActive>
-      <ChildObjects>
-        <PrjFrameParentDef>
-          <ObjectId>Document\TX746</ObjectId>
-          <Rect>
-            <Left>0</Left>
-            <Top>94</Top>
-            <Width>78</Width>
-            <Height>2472</Height>
-          </Rect>
-          <MinimizedRect>
-            <Left>0</Left>
-            <Top>0</Top>
-            <Width>297</Width>
-            <Height>102</Height>
-          </MinimizedRect>
-          <ShowMode>1</ShowMode>
-          <ZedLevel>-1</ZedLevel>
-        </PrjFrameParentDef>
-        <PrjFrameParentDef>
-          <ObjectId>Document\CH362</ObjectId>
-          <Rect>
-            <Left>97</Left>
-            <Top>313</Top>
-            <Width>3828</Width>
-            <Height>2184</Height>
-          </Rect>
-          <MinimizedRect>
-            <Left>0</Left>
-            <Top>0</Top>
-            <Width>297</Width>
-            <Height>102</Height>
-          </MinimizedRect>
           <ShowMode>1</ShowMode>
           <ZedLevel>0</ZedLevel>
         </PrjFrameParentDef>

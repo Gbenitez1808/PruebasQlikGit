@@ -9770,7 +9770,6 @@ if(ESTADO_463='PP',$(=_Color_Complementario4_5),
     <VerticalLabels>false</VerticalLabels>
     <ColWidths>
       <int>238</int>
-      <int>66</int>
       <int>122</int>
       <int>188</int>
       <int>191</int>
@@ -9786,6 +9785,7 @@ if(ESTADO_463='PP',$(=_Color_Complementario4_5),
       <int>134</int>
       <int>128</int>
       <int>134</int>
+      <int>100</int>
       <int>100</int>
       <int>100</int>
       <int>100</int>

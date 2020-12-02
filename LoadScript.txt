@@ -81,58 +81,6 @@ LOAD * INLINE [
 	13-08-19, faboy, BT-2458, Se agrega la info de deuda y prima de la última emisión
 	
 ];
-///$tab Variables
-LET vAppName = LEFT(DOCUMENTNAME(), (INDEX(DOCUMENTNAME(),'.',1)-1) );  // NOMBRE_DOCUMENTO
-LET vVarPath = vAppName&'-prj\'&vAppName&'_Variables';
-LET vActualizarVariables = 0;  //Se quiere Actualizar (o crear) el QVD de variables? 1 para Si
-
-IF($(vActualizarVariables)=1) 
-//Levanto las variables que estan en la App
-	Variables:
-	NoConcatenate
-	LOAD 
-	 Name,
-	 RawValue,
-	 Comment
-	FROM [$(vAppName).qvw] 
-	(XmlSimple, Table is [DocumentSummary/VariableDescription])
-	Where IsConfig = 'false' and IsReserved = 'false' // Exclude system vars
-	// Any addtional filtering here
-	;
-
-ELSE
-	//Levanto las variables que estan guardadas
-	Variables:
-	NoConcatenate
-	LOAD Name, 
-	     RawValue, 
-	     Comment
-	FROM
-	[$(vVarPath).QVD]
-	(qvd);
-
-//	//Agrego las variables que estan en la app y no estan guardadas 
-//	Concatenate(Variables_aux)
-//	LOAD * RESIDENT Variables
-//	WHERE NOT Exists(Name);
-//	
-//	DROP TABLE Variables;
-//	RENAME TABLE Variables_aux to Variables;
-END IF
-
-//Cargo las variables al documento
-FOR idx=0 to NoOfRows('Variables')-1
- LET vVarname	 	= Peek('Name'		,$(idx),'Variables');
- LET [$(vVarname)]  = Peek('RawValue'	,$(idx),'Variables');
-NEXT idx
-
-SET idx=;
-SET vVarname=;
-
-//Guardo todas las variables
-STORE Variables INTO [$(vVarPath).csv](txt, delimiter is ';');
-DROP Table Variables;
-
 ///$tab MOVIMIENTOS CARTERA
 MOVIMIENTOS_CARTERA:
 LOAD _KEY_POLIZA_MOVCARTERA, 
@@ -941,6 +889,58 @@ load * inline
 Ver año actual
 Ver año anterior
 ];
+///$tab Variables
+LET vAppName = LEFT(DOCUMENTNAME(), (INDEX(DOCUMENTNAME(),'.',1)-1) );  // NOMBRE_DOCUMENTO
+LET vVarPath = vAppName&'-prj\'&vAppName&'_Variables';
+LET vActualizarVariables = 1;  //Se quiere Actualizar (o crear) el QVD de variables? 1 para Si
+
+IF($(vActualizarVariables)=1) 
+//Levanto las variables que estan en la App
+	Variables:
+	NoConcatenate
+	LOAD 
+	 Name,
+	 RawValue,
+	 Comment
+	FROM [$(vAppName).qvw] 
+	(XmlSimple, Table is [DocumentSummary/VariableDescription])
+	Where IsConfig = 'false' and IsReserved = 'false' // Exclude system vars
+	// Any addtional filtering here
+	;
+
+ELSE
+	//Levanto las variables que estan guardadas
+	Variables:
+	NoConcatenate
+	LOAD Name, 
+	     RawValue, 
+	     Comment
+	FROM
+	[$(vVarPath).QVD]
+	(qvd);
+
+	//Agrego las variables que estan en la app y no estan guardadas 
+	Concatenate(Variables_aux)
+	LOAD * RESIDENT Variables
+	WHERE NOT Exists(Name);
+	
+	DROP TABLE Variables;
+	RENAME TABLE Variables_aux to Variables;
+END IF
+
+//Cargo las variables al documento
+FOR idx=0 to NoOfRows('Variables')-1
+ LET vVarname	 	= Peek('Name'		,$(idx),'Variables');
+ LET [$(vVarname)]  = Peek('RawValue'	,$(idx),'Variables');
+NEXT idx
+
+SET idx=;
+SET vVarname=;
+
+//Guardo todas las variables
+STORE Variables INTO [$(vVarPath).csv](txt, delimiter is ';');
+DROP Table Variables;
+
 ///$tab AD HOC
 //------- ADHoc Visitas
 

@@ -47,7 +47,7 @@
         <DropShadow>false</DropShadow>
       </CaptionFont>
       <Name>
-        <v>='Sin cápitas '&amp; Right(Max(CALENDARIO_LINK_AñoDesde_ART-1),2)&amp;'-'&amp;Right(Max(CALENDARIO_LINK_AñoHasta_ART-1),2)</v>
+        <v>='Sin cápitas '&amp; Right(Max(CALENDARIO_LINK_AñoDesde_ART),2)&amp;'-'&amp;Right(Max(CALENDARIO_LINK_AñoHasta_ART),2)</v>
       </Name>
       <Detached>false</Detached>
       <AllowMinimize>true</AllowMinimize>
@@ -7152,9 +7152,9 @@
       <int>300</int>
       <int>300</int>
       <int>300</int>
-      <int>100</int>
-      <int>100</int>
-      <int>100</int>
+      <int>300</int>
+      <int>300</int>
+      <int>300</int>
     </ColWidths>
     <Striping>
       <int>1</int>
